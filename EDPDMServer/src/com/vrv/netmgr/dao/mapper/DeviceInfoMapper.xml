@@ -1,0 +1,1089 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="com.vrv.netmgr.dao.mapper.DeviceInfoMapper">
+
+    <!-- 查询结果映射 -->
+    <resultMap id="searchResultMap" type="com.vrv.netmgr.entity.DeviceInfo">
+        <result property="deviceId" column="DeviceID" />
+        <result property="classId" column="ClassID" />
+        <result property="parentId" column="UpID" />
+        <result property="className" column="ClassName" />
+        <result property="regId" column="RegID" />
+        <result property="regName" column="RegName" />
+        <result property="regIp" column="RegIP" />
+        <result property="deptName" column="DeptName" />
+        <result property="officeName" column="OfficeName" />
+        <result property="subOffice" column="SubOffice" />
+        <result property="userName" column="UserName" />
+        <result property="tel" column="Tel" />
+        <result property="email" column="Email" />
+        <result property="numIpaddress" column="NumIPAddress" />
+        <result property="ipaddres" column="IPAddres" />
+        <result property="routeIpaddress" column="RouteIPAddress" />
+        <result property="macAddress" column="MacAddress" />
+        <result property="deviceName" column="DeviceName" />
+        <result property="aliasName" column="AliasName" />
+        <result property="switchIp" column="SwitchIP" />
+        <result property="switchPort" column="SwitchPort" />
+        <result property="switchName" column="SwitchName" />
+        <result property="deviceDesc" column="DeviceDesc" />
+        <result property="logonUserName" column="LogonUserName" />
+        <result property="domainName" column="DomainName" />
+        <result property="registered" column="Registered" />
+        <result property="runStatus" column="RunStatus" />
+        <result property="locked" column="Locked" />
+        <result property="protect" column="Protect" />
+        <result property="forceout" column="Forceout" />
+        <result property="runLevel" column="RunLevel" />
+        <result property="kvsCompany" column="KvsCompany" />
+        <result property="ostype" column="OSType" />
+        <result property="roomNumber" column="RoomNumber" />
+        <result property="deviceCode" column="DeviceCode" />
+        <result property="floorNumber" column="FloorNumber" />
+        <result property="policemenKind" column="PolicemenKind" />
+        <result property="diskSerial" column="DiskSerial" />
+        <result property="migrate" column="Migrate" />
+        <result property="cpu" column="CPU" />
+        <result property="memory" column="Memory" />
+        <result property="diskSize" column="DiskSize" />
+        <result property="identify" column="Identify" />
+        <result property="allowDail" column="AllowDail" />
+        <result property="registerTime" column="RegisterTime" />
+        <result property="lastTime" column="LastTime" />
+        <result property="agentVersion" column="AgentVersion" />
+        <result property="reserved1" column="Reserved1" />
+        <result property="reserved2" column="Reserved2" />
+        <result property="reserved3" column="Reserved3" />
+        <result property="deviceStatus" column="DeviceStatus" />
+        <result property="description" column="Description" />
+        <result property="productId" column="ProductID" />
+        <result property="kvsVersion" column="KvsVersion" />
+        <result property="unInstallTime" column="UnInstallTime" />
+        <result property="spNumber" column="SpNumber" />
+        <result property="ieversion" column="IEVersion" />
+        <result property="cpuType" column="CpuType" />
+        <result property="isIntelAmt" column="IsIntelAMT" />
+        <result property="intelAmtmode" column="IntelAMTMode" />
+        <result property="intelAmtip" column="IntelAMTIP" />
+        <result property="isLocal" column="IsLocal" />
+        <result property="aclCtrl" column="AclCtrl" />
+        <result property="attackTime" column="AttackTime" />
+        <result property="lockedEndTime" column="LockedEndTime" />
+        <result property="protectEndTime" column="ProtectEndTime" />
+        <result property="setupTmos" column="SetupTmos" />
+        <result property="migrateRegIp" column="MigrateRegIP" />
+        <result property="migrateUnitName" column="MigrateUnitName" />
+        <result property="migrateTime" column="MigrateTime" />
+        <result property="idleTime" column="IdleTime" />
+        <result property="portDescr" column="PortDescr" />
+        <result property="osLanguage" column="OsLanguage" />
+        <result property="devOnlyId" column="DevOnlyID" />
+        <result property="reportTime" column="ReportTime" />
+    </resultMap>
+
+    <!-- 用于select查询公用抽取的列 -->
+    <sql id="columns">
+        DeviceID,ClassID,UpID,ClassName,RegID,RegName,RegIP,DeptName,OfficeName,SubOffice,UserName,Tel,Email,NumIPAddress,IPAddres,RouteIPAddress,MacAddress,DeviceName,AliasName,SwitchIP,SwitchPort,SwitchName,DeviceDesc,LogonUserName,DomainName,Registered,RunStatus,Locked,Protect,Forceout,RunLevel,KvsCompany,OSType,RoomNumber,DeviceCode,FloorNumber,PolicemenKind,DiskSerial,Migrate,CPU,Memory,DiskSize,Identify,AllowDail,RegisterTime,LastTime,AgentVersion,Reserved1,Reserved2,Reserved3,DeviceStatus,Description,ProductID,KvsVersion,UnInstallTime,SpNumber,IEVersion,CpuType,IsIntelAMT,IntelAMTMode,IntelAMTIP,IsLocal,AclCtrl,AttackTime,LockedEndTime,ProtectEndTime,SetupTmos,MigrateRegIP,MigrateUnitName,MigrateTime,IdleTime,PortDescr,OsLanguage,DevOnlyID,ReportTime
+    </sql>
+
+    <!-- 新增记录 -->
+    <insert id="insert" parameterType="com.vrv.netmgr.entity.DeviceInfo">
+        INSERT INTO View_DeviceInfo (
+        DeviceID ,
+        ClassID ,
+        UpID ,
+        ClassName ,
+        RegID ,
+        RegName ,
+        RegIP ,
+        DeptName ,
+        OfficeName ,
+        SubOffice ,
+        UserName ,
+        Tel ,
+        Email ,
+        NumIPAddress ,
+        IPAddres ,
+        RouteIPAddress ,
+        MacAddress ,
+        DeviceName ,
+        AliasName ,
+        SwitchIP ,
+        SwitchPort ,
+        SwitchName ,
+        DeviceDesc ,
+        LogonUserName ,
+        DomainName ,
+        Registered ,
+        RunStatus ,
+        Locked ,
+        Protect ,
+        Forceout ,
+        RunLevel ,
+        KvsCompany ,
+        OSType ,
+        RoomNumber ,
+        DeviceCode ,
+        FloorNumber ,
+        PolicemenKind ,
+        DiskSerial ,
+        Migrate ,
+        CPU ,
+        Memory ,
+        DiskSize ,
+        Identify ,
+        AllowDail ,
+        RegisterTime ,
+        LastTime ,
+        AgentVersion ,
+        Reserved1 ,
+        Reserved2 ,
+        Reserved3 ,
+        DeviceStatus ,
+        Description ,
+        ProductID ,
+        KvsVersion ,
+        UnInstallTime ,
+        SpNumber ,
+        IEVersion ,
+        CpuType ,
+        IsIntelAMT ,
+        IntelAMTMode ,
+        IntelAMTIP ,
+        IsLocal ,
+        AclCtrl ,
+        AttackTime ,
+        LockedEndTime ,
+        ProtectEndTime ,
+        SetupTmos ,
+        MigrateRegIP ,
+        MigrateUnitName ,
+        MigrateTime ,
+        IdleTime ,
+        PortDescr ,
+        OsLanguage ,
+        DevOnlyID ,
+        ReportTime
+        ) VALUES (
+        #{deviceId} ,
+        #{classId} ,
+        #{parentId} ,
+        #{className} ,
+        #{regId} ,
+        #{regName} ,
+        #{regIp} ,
+        #{deptName} ,
+        #{officeName} ,
+        #{subOffice} ,
+        #{userName} ,
+        #{tel} ,
+        #{email} ,
+        #{numIpaddress} ,
+        #{ipaddres} ,
+        #{routeIpaddress} ,
+        #{macAddress} ,
+        #{deviceName} ,
+        #{aliasName} ,
+        #{switchIp} ,
+        #{switchPort} ,
+        #{switchName} ,
+        #{deviceDesc} ,
+        #{logonUserName} ,
+        #{domainName} ,
+        #{registered} ,
+        #{runStatus} ,
+        #{locked} ,
+        #{protect} ,
+        #{forceout} ,
+        #{runLevel} ,
+        #{kvsCompany} ,
+        #{ostype} ,
+        #{roomNumber} ,
+        #{deviceCode} ,
+        #{floorNumber} ,
+        #{policemenKind} ,
+        #{diskSerial} ,
+        #{migrate} ,
+        #{cpu} ,
+        #{memory} ,
+        #{diskSize} ,
+        #{identify} ,
+        #{allowDail} ,
+        #{registerTime} ,
+        #{lastTime} ,
+        #{agentVersion} ,
+        #{reserved1} ,
+        #{reserved2} ,
+        #{reserved3} ,
+        #{deviceStatus} ,
+        #{description} ,
+        #{productId} ,
+        #{kvsVersion} ,
+        #{unInstallTime} ,
+        #{spNumber} ,
+        #{ieversion} ,
+        #{cpuType} ,
+        #{isIntelAmt} ,
+        #{intelAmtmode} ,
+        #{intelAmtip} ,
+        #{isLocal} ,
+        #{aclCtrl} ,
+        #{attackTime} ,
+        #{lockedEndTime} ,
+        #{protectEndTime} ,
+        #{setupTmos} ,
+        #{migrateRegIp} ,
+        #{migrateUnitName} ,
+        #{migrateTime} ,
+        #{idleTime} ,
+        #{portDescr} ,
+        #{osLanguage} ,
+        #{devOnlyId} ,
+        #{reportTime}
+        )
+    </insert>
+    <!-- 单记录删除 -->
+    <delete id="delete" parameterType="java.lang.String">
+        delete from View_DeviceInfo where id=#{id}
+    </delete>
+    <!-- 批量记录删除 -->
+    <delete id="deleteByIds" parameterType="java.util.List">
+        delete from View_DeviceInfo where id in
+        <foreach collection="list" item="ids" open="(" separator="," close=")">#{ids}</foreach>
+    </delete>
+    <!-- 单记录更新 -->
+    <update id="update" parameterType="com.vrv.netmgr.entity.DeviceInfo">
+        UPDATE View_DeviceInfo
+        <trim prefix="set" suffixOverrides=",">
+            <if test="#{deviceId} != null">
+                DeviceID =#{deviceId},
+            </if>
+            <if test="#{classId} != null">
+                ClassID =#{classId},
+            </if>
+            <if test="#{parentId} != null">
+                UpID =#{parentId},
+            </if>
+            <if test="#{className} != null">
+                ClassName =#{className},
+            </if>
+            <if test="#{regId} != null">
+                RegID =#{regId},
+            </if>
+            <if test="#{regName} != null">
+                RegName =#{regName},
+            </if>
+            <if test="#{regIp} != null">
+                RegIP =#{regIp},
+            </if>
+            <if test="#{deptName} != null">
+                DeptName =#{deptName},
+            </if>
+            <if test="#{officeName} != null">
+                OfficeName =#{officeName},
+            </if>
+            <if test="#{subOffice} != null">
+                SubOffice =#{subOffice},
+            </if>
+            <if test="#{userName} != null">
+                UserName =#{userName},
+            </if>
+            <if test="#{tel} != null">
+                Tel =#{tel},
+            </if>
+            <if test="#{email} != null">
+                Email =#{email},
+            </if>
+            <if test="#{numIpaddress} != null">
+                NumIPAddress =#{numIpaddress},
+            </if>
+            <if test="#{ipaddres} != null">
+                IPAddres =#{ipaddres},
+            </if>
+            <if test="#{routeIpaddress} != null">
+                RouteIPAddress =#{routeIpaddress},
+            </if>
+            <if test="#{macAddress} != null">
+                MacAddress =#{macAddress},
+            </if>
+            <if test="#{deviceName} != null">
+                DeviceName =#{deviceName},
+            </if>
+            <if test="#{aliasName} != null">
+                AliasName =#{aliasName},
+            </if>
+            <if test="#{switchIp} != null">
+                SwitchIP =#{switchIp},
+            </if>
+            <if test="#{switchPort} != null">
+                SwitchPort =#{switchPort},
+            </if>
+            <if test="#{switchName} != null">
+                SwitchName =#{switchName},
+            </if>
+            <if test="#{deviceDesc} != null">
+                DeviceDesc =#{deviceDesc},
+            </if>
+            <if test="#{logonUserName} != null">
+                LogonUserName =#{logonUserName},
+            </if>
+            <if test="#{domainName} != null">
+                DomainName =#{domainName},
+            </if>
+            <if test="#{registered} != null">
+                Registered =#{registered},
+            </if>
+            <if test="#{runStatus} != null">
+                RunStatus =#{runStatus},
+            </if>
+            <if test="#{locked} != null">
+                Locked =#{locked},
+            </if>
+            <if test="#{protect} != null">
+                Protect =#{protect},
+            </if>
+            <if test="#{forceout} != null">
+                Forceout =#{forceout},
+            </if>
+            <if test="#{runLevel} != null">
+                RunLevel =#{runLevel},
+            </if>
+            <if test="#{kvsCompany} != null">
+                KvsCompany =#{kvsCompany},
+            </if>
+            <if test="#{ostype} != null">
+                OSType =#{ostype},
+            </if>
+            <if test="#{roomNumber} != null">
+                RoomNumber =#{roomNumber},
+            </if>
+            <if test="#{deviceCode} != null">
+                DeviceCode =#{deviceCode},
+            </if>
+            <if test="#{floorNumber} != null">
+                FloorNumber =#{floorNumber},
+            </if>
+            <if test="#{policemenKind} != null">
+                PolicemenKind =#{policemenKind},
+            </if>
+            <if test="#{diskSerial} != null">
+                DiskSerial =#{diskSerial},
+            </if>
+            <if test="#{migrate} != null">
+                Migrate =#{migrate},
+            </if>
+            <if test="#{cpu} != null">
+                CPU =#{cpu},
+            </if>
+            <if test="#{memory} != null">
+                Memory =#{memory},
+            </if>
+            <if test="#{diskSize} != null">
+                DiskSize =#{diskSize},
+            </if>
+            <if test="#{identify} != null">
+                Identify =#{identify},
+            </if>
+            <if test="#{allowDail} != null">
+                AllowDail =#{allowDail},
+            </if>
+            <if test="#{registerTime} != null">
+                RegisterTime =#{registerTime},
+            </if>
+            <if test="#{lastTime} != null">
+                LastTime =#{lastTime},
+            </if>
+            <if test="#{agentVersion} != null">
+                AgentVersion =#{agentVersion},
+            </if>
+            <if test="#{reserved1} != null">
+                Reserved1 =#{reserved1},
+            </if>
+            <if test="#{reserved2} != null">
+                Reserved2 =#{reserved2},
+            </if>
+            <if test="#{reserved3} != null">
+                Reserved3 =#{reserved3},
+            </if>
+            <if test="#{deviceStatus} != null">
+                DeviceStatus =#{deviceStatus},
+            </if>
+            <if test="#{description} != null">
+                Description =#{description},
+            </if>
+            <if test="#{productId} != null">
+                ProductID =#{productId},
+            </if>
+            <if test="#{kvsVersion} != null">
+                KvsVersion =#{kvsVersion},
+            </if>
+            <if test="#{unInstallTime} != null">
+                UnInstallTime =#{unInstallTime},
+            </if>
+            <if test="#{spNumber} != null">
+                SpNumber =#{spNumber},
+            </if>
+            <if test="#{ieversion} != null">
+                IEVersion =#{ieversion},
+            </if>
+            <if test="#{cpuType} != null">
+                CpuType =#{cpuType},
+            </if>
+            <if test="#{isIntelAmt} != null">
+                IsIntelAMT =#{isIntelAmt},
+            </if>
+            <if test="#{intelAmtmode} != null">
+                IntelAMTMode =#{intelAmtmode},
+            </if>
+            <if test="#{intelAmtip} != null">
+                IntelAMTIP =#{intelAmtip},
+            </if>
+            <if test="#{isLocal} != null">
+                IsLocal =#{isLocal},
+            </if>
+            <if test="#{aclCtrl} != null">
+                AclCtrl =#{aclCtrl},
+            </if>
+            <if test="#{attackTime} != null">
+                AttackTime =#{attackTime},
+            </if>
+            <if test="#{lockedEndTime} != null">
+                LockedEndTime =#{lockedEndTime},
+            </if>
+            <if test="#{protectEndTime} != null">
+                ProtectEndTime =#{protectEndTime},
+            </if>
+            <if test="#{setupTmos} != null">
+                SetupTmos =#{setupTmos},
+            </if>
+            <if test="#{migrateRegIp} != null">
+                MigrateRegIP =#{migrateRegIp},
+            </if>
+            <if test="#{migrateUnitName} != null">
+                MigrateUnitName =#{migrateUnitName},
+            </if>
+            <if test="#{migrateTime} != null">
+                MigrateTime =#{migrateTime},
+            </if>
+            <if test="#{idleTime} != null">
+                IdleTime =#{idleTime},
+            </if>
+            <if test="#{portDescr} != null">
+                PortDescr =#{portDescr},
+            </if>
+            <if test="#{osLanguage} != null">
+                OsLanguage =#{osLanguage},
+            </if>
+            <if test="#{devOnlyId} != null">
+                DevOnlyID =#{devOnlyId},
+            </if>
+            <if test="#{reportTime} != null">
+                ReportTime =#{reportTime},
+            </if>
+        </trim>
+        where id=#{id}
+    </update>
+    <!-- 查询记录BY ID -->
+    <select id="getById" resultMap="searchResultMap" parameterType="java.lang.String">
+        select
+        <include refid="columns" />
+        from
+        View_DeviceInfo where DeviceID=#{id}
+    </select>
+    <!-- 查询所有记录 -->
+    <select id="getAll" resultMap="searchResultMap" parameterType="java.lang.String">
+        select
+        <include refid="columns" />
+        from
+        View_DeviceInfo
+    </select>
+
+    <!-- 动态查询条件 -->
+    <sql id="searchConditionSQL">
+        <trim prefix="where" prefixOverrides="AND |OR ">
+            <if test="deviceId != null">
+                and DeviceID = #{deviceId}
+            </if>
+            <if test="classId != null">
+                and ClassID = #{classId}
+            </if>
+            <if test="parentId != null">
+                and UpID = #{parentId}
+            </if>
+            <if test="className != null">
+                AND ClassName LIKE '%${className}%'
+            </if>
+            <if test="regId != null">
+                and RegID = #{regId}
+            </if>
+            <if test="regName != null">
+                and RegName = #{regName}
+            </if>
+            <if test="regIp != null">
+                and RegIP = #{regIp}
+            </if>
+            <if test="deptName != null">
+                and DeptName = #{deptName}
+            </if>
+            <if test="officeName != null">
+                and OfficeName = #{officeName}
+            </if>
+            <if test="subOffice != null">
+                and SubOffice = #{subOffice}
+            </if>
+            <if test="userName != null">
+                and UserName = #{userName}
+            </if>
+            <if test="tel != null">
+                and Tel = #{tel}
+            </if>
+            <if test="email != null">
+                and Email = #{email}
+            </if>
+            <if test="numIpaddress != null">
+                and NumIPAddress = #{numIpaddress}
+            </if>
+            <if test="ipaddres != null">
+                AND IPAddres LIKE '%${ipaddres}%'
+            </if>
+            <if test="routeIpaddress != null">
+                and RouteIPAddress = #{routeIpaddress}
+            </if>
+            <if test="macAddress != null">
+                and MacAddress = #{macAddress}
+            </if>
+            <if test="deviceName != null">
+                AND DeviceName LIKE '%${deviceName}%'
+            </if>
+            <if test="aliasName != null">
+                and AliasName = #{aliasName}
+            </if>
+            <if test="switchIp != null">
+                and SwitchIP = #{switchIp}
+            </if>
+            <if test="switchPort != null">
+                and SwitchPort = #{switchPort}
+            </if>
+            <if test="switchName != null">
+                and SwitchName = #{switchName}
+            </if>
+            <if test="deviceDesc != null">
+                and DeviceDesc = #{deviceDesc}
+            </if>
+            <if test="logonUserName != null">
+                and LogonUserName = #{logonUserName}
+            </if>
+            <if test="domainName != null">
+                and DomainName = #{domainName}
+            </if>
+            <if test="registered != null">
+                and Registered = #{registered}
+            </if>
+            <if test="runStatus != null">
+                and RunStatus = #{runStatus}
+            </if>
+            <if test="locked != null">
+                and Locked = #{locked}
+            </if>
+            <if test="protect != null">
+                and Protect = #{protect}
+            </if>
+            <if test="forceout != null">
+                and Forceout = #{forceout}
+            </if>
+            <if test="runLevel != null">
+                and RunLevel = #{runLevel}
+            </if>
+            <if test="kvsCompany != null">
+                and KvsCompany = #{kvsCompany}
+            </if>
+            <if test="ostype != null">
+                and OSType = #{ostype}
+            </if>
+            <if test="roomNumber != null">
+                and RoomNumber = #{roomNumber}
+            </if>
+            <if test="deviceCode != null">
+                and DeviceCode = #{deviceCode}
+            </if>
+            <if test="floorNumber != null">
+                and FloorNumber = #{floorNumber}
+            </if>
+            <if test="policemenKind != null">
+                and PolicemenKind = #{policemenKind}
+            </if>
+            <if test="diskSerial != null">
+                and DiskSerial = #{diskSerial}
+            </if>
+            <if test="migrate != null">
+                and Migrate = #{migrate}
+            </if>
+            <if test="cpu != null">
+                and CPU = #{cpu}
+            </if>
+            <if test="memory != null">
+                and Memory = #{memory}
+            </if>
+            <if test="diskSize != null">
+                and DiskSize = #{diskSize}
+            </if>
+            <if test="identify != null">
+                and Identify = #{identify}
+            </if>
+            <if test="allowDail != null">
+                and AllowDail = #{allowDail}
+            </if>
+            <if test="registerTime != null">
+                and RegisterTime = #{registerTime}
+            </if>
+            <if test="lastTime != null">
+                and LastTime = #{lastTime}
+            </if>
+            <if test="agentVersion != null">
+                and AgentVersion = #{agentVersion}
+            </if>
+            <if test="reserved1 != null">
+                and Reserved1 = #{reserved1}
+            </if>
+            <if test="reserved2 != null">
+                and Reserved2 = #{reserved2}
+            </if>
+            <if test="reserved3 != null">
+                and Reserved3 = #{reserved3}
+            </if>
+            <if test="deviceStatus != null">
+                and DeviceStatus = #{deviceStatus}
+            </if>
+            <if test="description != null">
+                and Description = #{description}
+            </if>
+            <if test="productId != null">
+                and ProductID = #{productId}
+            </if>
+            <if test="kvsVersion != null">
+                and KvsVersion = #{kvsVersion}
+            </if>
+            <if test="unInstallTime != null">
+                and UnInstallTime = #{unInstallTime}
+            </if>
+            <if test="spNumber != null">
+                and SpNumber = #{spNumber}
+            </if>
+            <if test="ieversion != null">
+                and IEVersion = #{ieversion}
+            </if>
+            <if test="cpuType != null">
+                and CpuType = #{cpuType}
+            </if>
+            <if test="isIntelAmt != null">
+                and IsIntelAMT = #{isIntelAmt}
+            </if>
+            <if test="intelAmtmode != null">
+                and IntelAMTMode = #{intelAmtmode}
+            </if>
+            <if test="intelAmtip != null">
+                and IntelAMTIP = #{intelAmtip}
+            </if>
+            <if test="isLocal != null">
+                and IsLocal = #{isLocal}
+            </if>
+            <if test="aclCtrl != null">
+                and AclCtrl = #{aclCtrl}
+            </if>
+            <if test="attackTime != null">
+                and AttackTime = #{attackTime}
+            </if>
+            <if test="lockedEndTime != null">
+                and LockedEndTime = #{lockedEndTime}
+            </if>
+            <if test="protectEndTime != null">
+                and ProtectEndTime = #{protectEndTime}
+            </if>
+            <if test="setupTmos != null">
+                and SetupTmos = #{setupTmos}
+            </if>
+            <if test="migrateRegIp != null">
+                and MigrateRegIP = #{migrateRegIp}
+            </if>
+            <if test="migrateUnitName != null">
+                and MigrateUnitName = #{migrateUnitName}
+            </if>
+            <if test="migrateTime != null">
+                and MigrateTime = #{migrateTime}
+            </if>
+            <if test="idleTime != null">
+                and IdleTime = #{idleTime}
+            </if>
+            <if test="portDescr != null">
+                and PortDescr = #{portDescr}
+            </if>
+            <if test="osLanguage != null">
+                and OsLanguage = #{osLanguage}
+            </if>
+            <if test="devOnlyId != null">
+                and DevOnlyID = #{devOnlyId}
+            </if>
+            <if test="reportTime != null">
+                and ReportTime = #{reportTime}
+            </if>
+        </trim>
+    </sql>
+    <select id="search" resultMap="searchResultMap" useCache="true" parameterType="com.vrv.netmgr.vo.DeviceInfoSearchCondition">
+        select
+        <include refid="columns" />
+        from View_DeviceInfo
+        <include refid="searchConditionSQL" />
+    </select>
+
+    <select id="selectPage" resultMap="searchResultMap" useCache="true" parameterType="com.vrv.netmgr.vo.DeviceInfoSearchCondition" resultSetType="SCROLL_INSENSITIVE">
+        select
+        <include refid="columns" />
+        from View_DeviceInfo
+        <include refid="searchConditionSQL" />
+    </select>
+    <select id="selectPageCount" resultType="long" parameterType="com.vrv.netmgr.vo.DeviceInfoSearchCondition" resultSetType="SCROLL_INSENSITIVE">
+        select count(DeviceID) from View_DeviceInfo
+        <include refid="searchConditionSQL" />
+    </select>
+
+    <select id="searchHardwareInfoByDeviceId" resultType="com.vrv.netmgr.entity.Hardware" parameterType="java.lang.Long" resultSetType="SCROLL_INSENSITIVE">
+        SELECT
+        HardwareID AS hardwareId ,
+        DeviceID AS deviceId ,
+        HardwareName AS hardwareName ,
+        HardwareDescription AS hardwareDescription ,
+        Description1 AS description1 ,
+        Description2 AS description2 ,
+        EqnFlag AS eqnFlag
+        FROM Hardware WHERE DeviceID = #{deviceId}
+    </select>
+
+    <select id="searchEquipmentInfoByDeviceId" resultType="com.vrv.netmgr.entity.Equipment" parameterType="java.lang.Long" resultSetType="SCROLL_INSENSITIVE">
+        SELECT
+        EquipmentID AS equipmentId ,
+        DeviceID AS deviceId ,
+        EquipmentName AS equipmentName ,
+        EquipmentDescription AS equipmentDescription ,
+        Description1 AS description1 ,
+        Description2 AS description2 ,
+        EqnFlag AS eqnFlag
+        FROM Equipment WHERE DeviceID = #{deviceId}
+    </select>
+
+    <!-- 按设备查询软件信息的分页 -->
+    <select id="selectSoftwareInfo" resultType="com.vrv.netmgr.entity.Software" resultSetType="SCROLL_INSENSITIVE">
+        SELECT
+        SoftwareName softwareName ,
+        Version versionInfo ,
+        count(DeviceID) clientSetupNum
+        FROM Software
+        GROUP BY SoftwareName,Version
+        ORDER BY SoftwareName ASC,Version DESC
+    </select>
+
+    <select id="selectSoftwareInfoCount" resultType="long" resultSetType="SCROLL_INSENSITIVE">
+        SELECT COUNT(*) from (
+        SELECT
+        SoftwareName softwareName ,
+        Version versionInfo ,
+        count(DeviceID) clientSetupNum
+        FROM Software
+        GROUP BY SoftwareName,Version
+        ) v
+    </select>
+
+    <!-- 按设备查询软件信息的分页 -->
+    <select id="selectDeviceInfo" resultType="com.vrv.netmgr.entity.DeviceInfo" resultSetType="SCROLL_INSENSITIVE">
+        SELECT
+
+        View_DeviceInfo.DeptName as deptName,
+        View_DeviceInfo.OfficeName as officeName,
+        View_DeviceInfo.SubOffice as subOffice,
+        View_DeviceInfo.UserName as userName,
+
+        View_DeviceInfo.Tel as tel,
+        View_DeviceInfo.Ipaddres as ipaddres,
+
+        v.SoftwareNum as reserved3
+
+
+        FROM View_DeviceInfo INNER JOIN(
+        SELECT COUNT(SoftwareName) as SoftwareNum,View_DeviceInfo.DeviceID
+        FROM Software INNER JOIN View_DeviceInfo ON Software.DeviceID = View_DeviceInfo.DeviceID
+        GROUP BY View_DeviceInfo.DeviceID
+        ) v ON View_DeviceInfo.DeviceID = v.DeviceID
+
+    </select>
+
+    <select id="selectDeviceInfoCount" resultType="long" resultSetType="SCROLL_INSENSITIVE">
+        SELECT count(*)
+        FROM(
+        SELECT v.SoftwareNum,View_DeviceInfo.*
+        FROM View_DeviceInfo INNER JOIN(
+        SELECT COUNT(SoftwareName) as SoftwareNum,View_DeviceInfo.DeviceID
+        FROM Software INNER JOIN View_DeviceInfo ON Software.DeviceID = View_DeviceInfo.DeviceID
+        GROUP BY View_DeviceInfo.DeviceID
+        ) v ON View_DeviceInfo.DeviceID = v.DeviceID
+        ) vc
+    </select>
+
+    <!-- 本地设备注册统计 -->
+    <select id="statisticsdeviceRegisterInfo" resultType="java.util.Map" parameterType="com.vrv.netmgr.vo.DeviceInfoSearchCondition" resultSetType="SCROLL_INSENSITIVE">
+        SELECT
+        (SELECT COUNT(DeviceID) FROM Device) as totalCount,
+        (
+        SELECT COUNT(DeviceID)
+        FROM Device
+        WHERE (Reserved3 &amp; 1) &lt;&gt; 1 AND (Registered=1 or (Protect &lt;&gt; 1 AND Locked &lt;&gt; 1 AND Forceout &lt;&gt; 1 AND LEN(IsNull(MacAddress,''))>0 AND
+        MacAddress &lt;&gt; '000000000000' AND (RunStatus=1 OR (LastTime is Null) OR (DateAdd(Day,150,LastTime)>=GetDate())) AND IsNull(TotalTime,0)>1440))
+        ) as shouldRegistedCount,
+        (SELECT COUNT(DeviceID) FROM Device WHERE registered = 1) as registedCount,
+        (SELECT COUNT(DeviceID) FROM Device WHERE RunStatus = 1) as runCount,
+        (select COUNT(DeviceID) FROM Device WHERE (RunLevel=2 or RunLevel=4) and Registered=1 and (Reserved3&amp;1)&lt;&gt;1) as kvsCount,
+        (select COUNT(DeviceID) FROM Device WHERE (RunLevel=2 or RunLevel=4) and Registered=1 and (Reserved3&amp;1)&lt;&gt;1 and RunStatus=1) as onlineInstallKvs
+        FROM Class
+
+    </select>
+
+    <!-- 设备资源按操作系统统计 -->
+    <select id="statisticsDeviceResourceByOSType" resultType="java.util.Map" parameterType="com.vrv.netmgr.vo.DeviceInfoSearchCondition">
+        SELECT Num,type,(
+        SELECT ROUND(CAST(v3.Num as float(4))/COUNT(DeviceID),4)*100 FROM Device
+        ) as persent FROM(
+
+        --SELECT Num,type,(ROUND(CAST(v3.Num as float(4))/SUM(Num),4)*100) as persent
+        SELECT Num,type FROM (
+        select Count(DeviceID) as Num,'win7' as type From Device where OSType like '%WINDOWS 7%'
+        UNION ALL
+        select Count(DeviceID) as Num,'vista' as type From Device where OSType like '% VISTA%'
+        UNION ALL
+        select Count(DeviceID) as Num,'win2003' as type From Device where OSType like '% 2003%'
+        UNION ALL
+        select Count(DeviceID) as Num,'win200' as type From Device where OSType like '%WINDOWS 2000%'
+        UNION ALL
+        select Count(DeviceID) as Num,'winxp' as type From Device where OSType like '%WINDOWS XP%'
+        UNION ALL
+        select Count(DeviceID) as Num,'winnt' as type From Device where OSType like '%WINDOWS NT%'
+        UNION ALL
+        select Count(DeviceID) as Num,'winme' as type From Device where OSType like '%Mill%'
+        UNION ALL
+        select Count(DeviceID) as Num,'win98' as type From Device where UPPER(OSType) like '%WINDOWS 98%'
+        UNION ALL
+        select Count(DeviceID) as Num,'win95' as type From Device where UPPER(OSType) like '%WINDOWS 95%'
+
+        UNION ALL
+        SELECT COUNT(DeviceID) as Num,'other' as type FROM Device where UPPER(OSType) NOT LIKE '%WINDOWS 7%'
+        AND UPPER(OSType) NOT LIKE '% VISTA%'
+        AND UPPER(OSType) NOT LIKE '% 2003%'
+        AND UPPER(OSType) NOT LIKE '%WINDOWS 2000%'
+        AND UPPER(OSType) NOT LIKE '%WINDOWS XP%'
+        AND UPPER(OSType) NOT LIKE '%WINDOWS NT%'
+        AND OSType NOT LIKE '%Mill%'
+        AND UPPER(OSType) NOT LIKE '%WINDOWS 98%'
+        AND UPPER(OSType) NOT LIKE '%WINDOWS 95%'
+        ) v1
+        ) v3
+    </select>
+
+    <!-- 设备资源按内存容量统计 -->
+    <select id="statisticsDeviceResourceByMemery" resultType="java.util.Map" parameterType="com.vrv.netmgr.vo.DeviceInfoSearchCondition">
+        SELECT Num,type,(
+        SELECT ROUND(CAST(v3.Num as float(4))/COUNT(DeviceID),4)*100 FROM Device
+        ) as persent FROM(
+        SELECT Num,type FROM (
+        select Count(DeviceID) as Num,'64M以下' as type From Device where Memory>0 and Memory &lt;64
+        UNION ALL
+        select Count(DeviceID) as Num,'64M---127M' as type From Device where Memory &lt; 128 and Memory > 64
+        UNION ALL
+        select Count(DeviceID) as Num,'128M--255M' as type From Device where Memory &lt; 256 and Memory > 127
+        UNION ALL
+        select Count(DeviceID) as Num,'256M--511M' as type From Device where Memory &lt; 512 and Memory > 255
+        UNION ALL
+        select Count(DeviceID) as Num,'512M-1023M' as type From Device where Memory &lt; 1024 and Memory > 511
+        UNION ALL
+        select Count(DeviceID) as Num,'1024M以上' as type From Device where Memory > 1023
+        UNION ALL
+        select Count(DeviceID) as Num,'其它' as type From Device where not isnull(Memory,0)>0
+        ) v1
+        ) v3
+    </select>
+
+    <!-- 设备资源按CPU主频统计 -->
+    <select id="statisticsDeviceResourceByCPUFrequency" resultType="java.util.Map" parameterType="com.vrv.netmgr.vo.DeviceInfoSearchCondition">
+        SELECT Num,type,(
+        SELECT ROUND(CAST(v2.Num as float(4))/COUNT(DeviceID),4)*100 FROM Device
+        ) as persent FROM(
+        SELECT Num,type FROM (
+        select Count(DeviceID) as Num,'小于500M' as type From Device where CPU>0 and CPU &lt; 501
+        UNION ALL
+        select Count(DeviceID) as Num,'500M-1G ' as type From Device where CPU &lt; 1001 and CPU>500
+        UNION ALL
+        select Count(DeviceID) as Num,'1G---2G ' as type From Device where CPU &lt; 2001 and CPU>1000
+        UNION ALL
+        select Count(DeviceID) as Num,'大于-2G ' as type From Device where CPU>2000
+        UNION ALL
+        SELECT (SELECT COUNT(DeviceID) FROM Device) - SUM(Num) as Num,'其它' as type FROM(
+        select Count(DeviceID) as Num,'小于500M' as type From Device where CPU>0 and CPU &lt; 501
+        UNION ALL
+        select Count(DeviceID) as Num,'500M-1G ' as type From Device where CPU &lt; 1001 and CPU>500
+        UNION ALL
+        select Count(DeviceID) as Num,'1G---2G ' as type From Device where CPU &lt; 2001 and CPU>1000
+        UNION ALL
+        select Count(DeviceID) as Num,'大于-2G ' as type From Device where CPU>2000
+        ) v0
+        ) v1
+        ) v2
+    </select>
+
+    <!-- 设备资源按CPU类型统计 -->
+    <select id="statisticsDeviceResourceByCPUType" resultType="java.util.Map" parameterType="com.vrv.netmgr.vo.DeviceInfoSearchCondition">
+        SELECT Num,type,(
+        SELECT ROUND(CAST(v3.Num as float(4))/COUNT(DeviceID),4)*100 FROM Device
+        ) as persent FROM(
+        SELECT Num,type FROM (
+        select Count(DeviceID) as Num,'Intel系列CPU' as type From Device where CpuType like '%intel%'
+        UNION ALL
+        select Count(DeviceID) as Num,'非Intel系列CPU' as type From Device where CpuType not like '%intel%' and not CpuType is null
+        UNION ALL
+        select Count(DeviceID) as Num,'其它' as type From Device where CpuType is null
+        ) v1
+        ) v3
+    </select>
+
+    <!-- 设备资源按CPU类型统计 -->
+    <select id="statisticsDeviceResourceByDiskSize" resultType="java.util.Map" parameterType="com.vrv.netmgr.vo.DeviceInfoSearchCondition">
+        SELECT Num,type,(
+        SELECT ROUND(CAST(v3.Num as float(4))/COUNT(DeviceID),4)*100 FROM Device
+        ) as persent FROM(
+        SELECT Num,type FROM (
+        select Count(DeviceID) as Num,'&lt;=20G' as type From Device where DiskSize>0 and Convert(int,(DiskSize*1.024*1.024/1000)+0.5)&lt;=20
+        UNION ALL
+        select Count(DeviceID) as Num,'21---40G' as type From Device where Convert(int,(DiskSize*1.024*1.024/1000)+0.5)&lt;=40 and
+        Convert(int,(DiskSize*1.024*1.024/1000)+0.5)>=21
+        UNION ALL
+        select Count(DeviceID) as Num,'41---60G' as type From Device where Convert(int,(DiskSize*1.024*1.024/1000)+0.5)&lt;=60 and
+        Convert(int,(DiskSize*1.024*1.024/1000)+0.5)>=41
+        UNION ALL
+        select Count(DeviceID) as Num,'61---80G' as type From Device where Convert(int,(DiskSize*1.024*1.024/1000)+0.5)&lt;=80 and
+        Convert(int,(DiskSize*1.024*1.024/1000)+0.5)>=61
+        UNION ALL
+        select Count(DeviceID) as Num,'81--120G' as type From Device where Convert(int,(DiskSize*1.024*1.024/1000)+0.5)&lt;=120 and
+        Convert(int,(DiskSize*1.024*1.024/1000)+0.5)>=81
+        UNION ALL
+        select Count(DeviceID) as Num,'121-160G' as type From Device where Convert(int,(DiskSize*1.024*1.024/1000)+0.5)&lt;=160 and
+        Convert(int,(DiskSize*1.024*1.024/1000)+0.5)>=121
+        UNION ALL
+        select Count(DeviceID) as Num,'>=161G' as type From Device where Convert(int,(DiskSize*1.024*1.024/1000)+0.5)>=161
+        UNION ALL
+        select Count(DeviceID) as Num,'其它' as type From Device where DiskSize =0
+        ) v1
+        ) v3
+    </select>
+
+    <!-- 设备资源按CPU类型统计 -->
+    <select id="statisticsDeviceResourceByType" resultType="java.util.Map" parameterType="com.vrv.netmgr.vo.DeviceInfoSearchCondition">
+        Select DevFirstType,(
+        Select Count(DeviceID) As TypeNum From Device Where (Device.Reserved3 &amp; 1) &lt;&gt; 1 and Reserved2 in (
+        Select DevTypeCode From DeviceTypeList Where DevFirstType = dt.DevFirstType
+        )
+        ) as Num
+        From DeviceTypeList dt
+        where DevTypeUsed=1
+        Group By DevFirstType
+        Order By DevFirstType Desc
+    </select>
+
+    <!-- 获取设备曾经使用的或者正在使用的ip资源 -->
+    <select id="selectIPInfo" resultType="com.vrv.netmgr.vo.IpInfoVo" useCache="true" parameterType="com.vrv.netmgr.vo.DeviceInfoSearchCondition" resultSetType="SCROLL_INSENSITIVE">
+        select
+            IPAddres 		as ipaddres,
+            NumIPAddress	as numIpaddress,
+            Registered		as registered,
+            ClassID 		as classId,
+            count(IPAddres) as ipAccount,
+            (SELECT className FROM Class WHERE ClassID = ClassID) as className
+        FROM Device
+        GROUP BY IPAddres,NumIPAddress,Registered,ClassID
+        <trim prefix="HAVING" prefixOverrides="AND |OR ">
+            <if test="classId != null">
+                 AND ClassID = #{classId}
+            </if>
+            <if test="registered != null">
+                 AND Registered = #{registered}
+            </if>
+        </trim>
+
+    </select>
+    <select id="selectIPInfoCount" resultType="long" parameterType="com.vrv.netmgr.vo.DeviceInfoSearchCondition" resultSetType="SCROLL_INSENSITIVE">
+        SELECT count(IPAddres)
+        FROM (
+            select
+                IPAddres 		as ipaddres,
+                NumIPAddress	as numIpaddress,
+                Registered		as registered,
+                ClassID 		as classId
+            FROM Device
+            GROUP BY IPAddres,NumIPAddress,Registered,ClassID
+            <trim prefix="HAVING" prefixOverrides="AND |OR ">
+                <if test="classId != null">
+                    and ClassID = #{classId}
+                </if>
+                <if test="registered != null">
+                     AND Registered = #{registered}
+                </if>
+            </trim>
+        ) v
+    </select>
+
+    <!-- 设备资源按CPU类型统计 -->
+    <select id="statisticsKvsInstallInfo" resultType="java.util.Map" parameterType="com.vrv.netmgr.vo.DeviceInfoSearchCondition">
+        SELECT COUNT(deviceID) as totalCount,(SUM(val)/COUNT(deviceID))*100 as kvsPersent,((COUNT(deviceID)-SUM(val))/COUNT(deviceID))*100 as unKvsPersent
+        FROM(
+            SELECT v1.deviceID,(v1.KvsCmpVal | v1.KvsVersionVal) as val
+            FROM(
+                SELECT deviceID ,(
+                    CASE  KvsCompany WHEN  NULL THEN 1 ELSE 0 END
+                ) as KvsCmpVal,(
+                    CASE  KvsVersion WHEN  NULL THEN 1 ELSE 0 END
+                ) as KvsVersionVal
+                FROM Device
+            ) v1
+        ) v2
+    </select>
+
+    <select id="statisticsIpUseage" resultType="java.util.Map" parameterType="com.vrv.netmgr.vo.DeviceInfoSearchCondition">
+        SELECT COUNT(totalCount) as totalCount,SUM(Registered) as registered ,COUNT(totalCount)-SUM(Registered) as unRegistered FROM(
+            SELECT COUNT(NumIPAddress) as totalCount,SUM(Registered) as Registered
+            FROM Device
+            WHERE ClassID = 1
+            <if test="startNumIpAddress != null">
+                AND NumIPAddress >= #{startNumIpAddress}
+            </if>
+            <if test="endNumIpAddress != null">
+                AND NumIPAddress &lt;= #{endNumIpAddress}
+            </if>
+            GROUP BY NumIPAddress
+        ) v1
+    </select>
+
+    <select id="searchIpRangeInfo" resultType="java.util.Map" parameterType="com.vrv.netmgr.vo.DeviceInfoSearchCondition">
+        SELECT range.ClassID,range.IPStart,range.IPEnd
+        FROM Class c INNER JOIN RegionManage r ON r.ClassID = c.ClassID INNER JOIN IPRange range ON range.ClassID = r.ClassID
+        WHERE c.ClassID = 1 AND IsScan = 1
+    </select>
+
+    <!-- 本地漏洞统计 -->
+    <select id="searchPatchInfo" resultType="java.util.Map" parameterType="com.vrv.netmgr.vo.DeviceInfoSearchCondition">
+        SELECT * FROM(
+            SELECT Count(*) AS Num ,ClassID,2 as type FROM Device where (CountPatchLevel3+CountPatchLevel4)>0 GROUP BY ClassID
+            UNION ALL
+            SELECT Count(*) AS Num ,ClassID,1 as type FROM Device where (CountPatchLevel1+CountPatchLevel2)>0 and (CountPatchLevel3+CountPatchLevel4)=0 GROUP BY ClassID
+            UNION ALL
+            SELECT Count(*) AS Num ,ClassID,0 as type FROM Device where CountPatchLevel0>0 and (CountPatchLevel1+CountPatchLevel2)=0 and (CountPatchLevel3+CountPatchLevel4)=0 GROUP BY ClassID
+        ) v
+        WHERE ClassID in (1)
+    </select>
+
+</mapper>

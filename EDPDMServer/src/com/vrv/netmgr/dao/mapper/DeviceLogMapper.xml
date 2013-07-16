@@ -1,0 +1,1249 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="com.vrv.netmgr.dao.mapper.DeviceLogMapper">
+
+    <!-- 查询结果映射 -->
+    <resultMap id="searchResultMap" type="com.vrv.netmgr.entity.DeviceLog">
+        <result property="id" column="ID" />
+        <result property="logType" column="LogType" />
+        <result property="logTime" column="LogTime" />
+        <result property="deviceId" column="DeviceID" />
+        <result property="devOnlyId" column="DevOnlyID" />
+        <result property="onlyId" column="OnlyID" />
+        <result property="classId" column="ClassID" />
+        <result property="contrlId" column="ContrlID" />
+        <result property="deviceCode" column="DeviceCode" />
+        <result property="regId" column="RegID" />
+        <result property="deptName" column="DeptName" />
+        <result property="officeName" column="OfficeName" />
+        <result property="floorNumber" column="FloorNumber" />
+        <result property="roomNumber" column="RoomNumber" />
+        <result property="subOffice" column="SubOffice" />
+        <result property="userName" column="UserName" />
+        <result property="deviceName" column="DeviceName" />
+        <result property="aliasName" column="AliasName" />
+        <result property="switchId" column="SwitchID" />
+        <result property="switchName" column="SwitchName" />
+        <result property="switchIp" column="SwitchIP" />
+        <result property="switchPort" column="SwitchPort" />
+        <result property="portDescr" column="PortDescr" />
+        <result property="ostype" column="OSType" />
+        <result property="osLanguage" column="OsLanguage" />
+        <result property="spNumber" column="SpNumber" />
+        <result property="ieversion" column="IEVersion" />
+        <result property="cpuType" column="CpuType" />
+        <result property="cpuSerial" column="CpuSerial" />
+        <result property="numIpaddress" column="NumIPAddress" />
+        <result property="hardware1" column="Hardware1" />
+        <result property="hardware2" column="Hardware2" />
+        <result property="ipaddres" column="IPAddres" />
+        <result property="macAddress" column="MacAddress" />
+        <result property="routeIpaddress" column="RouteIPAddress" />
+        <result property="netWork" column="NetWork" />
+        <result property="cpu" column="CPU" />
+        <result property="memory" column="Memory" />
+        <result property="diskSize" column="DiskSize" />
+        <result property="other" column="Other" />
+        <result property="tel" column="Tel" />
+        <result property="email" column="Email" />
+        <result property="logonUserName" column="LogonUserName" />
+        <result property="domainName" column="DomainName" />
+        <result property="identify" column="Identify" />
+        <result property="allowDail" column="AllowDail" />
+        <result property="registerTime" column="RegisterTime" />
+        <result property="lastTime" column="LastTime" />
+        <result property="attackTime" column="AttackTime" />
+        <result property="reportTime" column="ReportTime" />
+        <result property="unInstallTime" column="UnInstallTime" />
+        <result property="idleTime" column="IdleTime" />
+        <result property="bootTime" column="BootTime" />
+        <result property="protectEndTime" column="ProtectEndTime" />
+        <result property="lockedEndTime" column="LockedEndTime" />
+        <result property="onlineTime" column="OnlineTime" />
+        <result property="totalTime" column="TotalTime" />
+        <result property="dayTime" column="DayTime" />
+        <result property="runStatus" column="RunStatus" />
+        <result property="registered" column="Registered" />
+        <result property="agentVersion" column="AgentVersion" />
+        <result property="kvsCompany" column="KvsCompany" />
+        <result property="kvsVersion" column="KvsVersion" />
+        <result property="aclCtrl" column="AclCtrl" />
+        <result property="serviceNo" column="ServiceNo" />
+        <result property="diskSerial" column="DiskSerial" />
+        <result property="productId" column="ProductID" />
+        <result property="countPatchLevel0" column="CountPatchLevel0" />
+        <result property="countPatchLevel1" column="CountPatchLevel1" />
+        <result property="countPatchLevel2" column="CountPatchLevel2" />
+        <result property="countPatchLevel3" column="CountPatchLevel3" />
+        <result property="countPatchLevel4" column="CountPatchLevel4" />
+        <result property="validDay" column="ValidDay" />
+        <result property="protect" column="Protect" />
+        <result property="locked" column="Locked" />
+        <result property="forceout" column="Forceout" />
+        <result property="runLevel" column="RunLevel" />
+        <result property="deviceStatus" column="DeviceStatus" />
+        <result property="isLocal" column="IsLocal" />
+        <result property="reserved1" column="Reserved1" />
+        <result property="reserved2" column="Reserved2" />
+        <result property="reserved3" column="Reserved3" />
+        <result property="reserved4" column="Reserved4" />
+        <result property="reserved5" column="Reserved5" />
+        <result property="reserved6" column="Reserved6" />
+        <result property="reserved7" column="Reserved7" />
+        <result property="reserved8" column="Reserved8" />
+        <result property="migrate" column="Migrate" />
+        <result property="migrateRegIp" column="MigrateRegIP" />
+        <result property="migrateUnitName" column="MigrateUnitName" />
+        <result property="migrateTime" column="MigrateTime" />
+        <result property="policemenKind" column="PolicemenKind" />
+        <result property="intelAmtmode" column="IntelAMTMode" />
+        <result property="intelAmtip" column="IntelAMTIP" />
+        <result property="isIntelAmt" column="IsIntelAMT" />
+        <result property="amtuuid" column="AMTUUID" />
+        <result property="amtversion" column="AMTVersion" />
+        <result property="regip" column="REGIP" />
+        <result property="firwallStatus" column="FirwallStatus" />
+        <result property="description" column="Description" />
+        <result property="computerManufacturer" column="ComputerManufacturer" />
+        <result property="computerModel" column="ComputerModel" />
+        <result property="externalDevice" column="ExternalDevice" />
+        <result property="externalDeviceModel" column="ExternalDeviceModel" />
+        <result property="roomSerial" column="RoomSerial" />
+        <result property="deviceNumber" column="DeviceNumber" />
+        <result property="deviceDesc" column="DeviceDesc" />
+        <result property="fwPolicy" column="FwPolicy" />
+        <result property="allOss" column="AllOss" />
+        <result property="setupTmos" column="SetupTmos" />
+        <result property="osversion" column="OSVersion" />
+        <result property="pki" column="PKI" />
+        <result property="healthScore" column="HealthScore" />
+        <result property="healthTime" column="HealthTime" />
+        <result property="synStatus" column="SynStatus" />
+        <result property="activeNetCard" column="ActiveNetCard" />
+        <result property="pkid" column="Pkid" />
+        <result property="pkiUser" column="PkiUser" />
+        <result property="pkiUnit" column="PkiUnit" />
+        <result property="actUser" column="ActUser" />
+        <result property="loginCount" column="LoginCount" />
+        <result property="tioStatus" column="TioStatus" />
+        <result property="separateFlag" column="SeparateFlag" />
+        <result property="manualTag" column="ManualTag" />
+        <result property="regionCode" column="RegionCode" />
+        <result property="exField1" column="ExField1" />
+        <result property="exField2" column="ExField2" />
+        <result property="exField3" column="ExField3" />
+        <result property="exField4" column="ExField4" />
+        <result property="exField5" column="ExField5" />
+    </resultMap>
+    <!-- 用于select查询公用抽取的列 -->
+    <sql id="columns">
+        ID,LogType,LogTime,DeviceID,DevOnlyID,OnlyID,ClassID,ContrlID,DeviceCode,RegID,DeptName,OfficeName,FloorNumber,RoomNumber,SubOffice,UserName,DeviceName,AliasName,SwitchID,SwitchName,SwitchIP,SwitchPort,PortDescr,OSType,OsLanguage,SpNumber,IEVersion,CpuType,CpuSerial,NumIPAddress,Hardware1,Hardware2,IPAddres,MacAddress,RouteIPAddress,NetWork,CPU,Memory,DiskSize,Other,Tel,Email,LogonUserName,DomainName,Identify,AllowDail,RegisterTime,LastTime,AttackTime,ReportTime,UnInstallTime,IdleTime,BootTime,ProtectEndTime,LockedEndTime,OnlineTime,TotalTime,DayTime,RunStatus,Registered,AgentVersion,KvsCompany,KvsVersion,AclCtrl,ServiceNo,DiskSerial,ProductID,CountPatchLevel0,CountPatchLevel1,CountPatchLevel2,CountPatchLevel3,CountPatchLevel4,ValidDay,Protect,Locked,Forceout,RunLevel,DeviceStatus,IsLocal,Reserved1,Reserved2,Reserved3,Reserved4,Reserved5,Reserved6,Reserved7,Reserved8,Migrate,MigrateRegIP,MigrateUnitName,MigrateTime,PolicemenKind,IntelAMTMode,IntelAMTIP,IsIntelAMT,AMTUUID,AMTVersion,REGIP,FirwallStatus,Description,ComputerManufacturer,ComputerModel,ExternalDevice,ExternalDeviceModel,RoomSerial,DeviceNumber,DeviceDesc,FwPolicy,AllOss,SetupTmos,OSVersion,PKI,HealthScore,HealthTime,SynStatus,ActiveNetCard,Pkid,PkiUser,PkiUnit,ActUser,LoginCount,TioStatus,SeparateFlag,ManualTag,RegionCode,ExField1,ExField2,ExField3,ExField4,ExField5
+    </sql>
+    <!-- 新增记录 -->
+    <insert id="insert" parameterType="com.vrv.netmgr.entity.DeviceLog">
+        INSERT INTO DeviceLog (
+            ID ,
+            LogType ,
+            LogTime ,
+            DeviceID ,
+            DevOnlyID ,
+            OnlyID ,
+            ClassID ,
+            ContrlID ,
+            DeviceCode ,
+            RegID ,
+            DeptName ,
+            OfficeName ,
+            FloorNumber ,
+            RoomNumber ,
+            SubOffice ,
+            UserName ,
+            DeviceName ,
+            AliasName ,
+            SwitchID ,
+            SwitchName ,
+            SwitchIP ,
+            SwitchPort ,
+            PortDescr ,
+            OSType ,
+            OsLanguage ,
+            SpNumber ,
+            IEVersion ,
+            CpuType ,
+            CpuSerial ,
+            NumIPAddress ,
+            Hardware1 ,
+            Hardware2 ,
+            IPAddres ,
+            MacAddress ,
+            RouteIPAddress ,
+            NetWork ,
+            CPU ,
+            Memory ,
+            DiskSize ,
+            Other ,
+            Tel ,
+            Email ,
+            LogonUserName ,
+            DomainName ,
+            Identify ,
+            AllowDail ,
+            RegisterTime ,
+            LastTime ,
+            AttackTime ,
+            ReportTime ,
+            UnInstallTime ,
+            IdleTime ,
+            BootTime ,
+            ProtectEndTime ,
+            LockedEndTime ,
+            OnlineTime ,
+            TotalTime ,
+            DayTime ,
+            RunStatus ,
+            Registered ,
+            AgentVersion ,
+            KvsCompany ,
+            KvsVersion ,
+            AclCtrl ,
+            ServiceNo ,
+            DiskSerial ,
+            ProductID ,
+            CountPatchLevel0 ,
+            CountPatchLevel1 ,
+            CountPatchLevel2 ,
+            CountPatchLevel3 ,
+            CountPatchLevel4 ,
+            ValidDay ,
+            Protect ,
+            Locked ,
+            Forceout ,
+            RunLevel ,
+            DeviceStatus ,
+            IsLocal ,
+            Reserved1 ,
+            Reserved2 ,
+            Reserved3 ,
+            Reserved4 ,
+            Reserved5 ,
+            Reserved6 ,
+            Reserved7 ,
+            Reserved8 ,
+            Migrate ,
+            MigrateRegIP ,
+            MigrateUnitName ,
+            MigrateTime ,
+            PolicemenKind ,
+            IntelAMTMode ,
+            IntelAMTIP ,
+            IsIntelAMT ,
+            AMTUUID ,
+            AMTVersion ,
+            REGIP ,
+            FirwallStatus ,
+            Description ,
+            ComputerManufacturer ,
+            ComputerModel ,
+            ExternalDevice ,
+            ExternalDeviceModel ,
+            RoomSerial ,
+            DeviceNumber ,
+            DeviceDesc ,
+            FwPolicy ,
+            AllOss ,
+            SetupTmos ,
+            OSVersion ,
+            PKI ,
+            HealthScore ,
+            HealthTime ,
+            SynStatus ,
+            ActiveNetCard ,
+            Pkid ,
+            PkiUser ,
+            PkiUnit ,
+            ActUser ,
+            LoginCount ,
+            TioStatus ,
+            SeparateFlag ,
+            ManualTag ,
+            RegionCode ,
+            ExField1 ,
+            ExField2 ,
+            ExField3 ,
+            ExField4 ,
+            ExField5
+        ) VALUES (
+        #{id} ,
+        #{logType} ,
+        #{logTime} ,
+        #{deviceId} ,
+        #{devOnlyId} ,
+        #{onlyId} ,
+        #{classId} ,
+        #{contrlId} ,
+        #{deviceCode} ,
+        #{regId} ,
+        #{deptName} ,
+        #{officeName} ,
+        #{floorNumber} ,
+        #{roomNumber} ,
+        #{subOffice} ,
+        #{userName} ,
+        #{deviceName} ,
+        #{aliasName} ,
+        #{switchId} ,
+        #{switchName} ,
+        #{switchIp} ,
+        #{switchPort} ,
+        #{portDescr} ,
+        #{ostype} ,
+        #{osLanguage} ,
+        #{spNumber} ,
+        #{ieversion} ,
+        #{cpuType} ,
+        #{cpuSerial} ,
+        #{numIpaddress} ,
+        #{hardware1} ,
+        #{hardware2} ,
+        #{ipaddres} ,
+        #{macAddress} ,
+        #{routeIpaddress} ,
+        #{netWork} ,
+        #{cpu} ,
+        #{memory} ,
+        #{diskSize} ,
+        #{other} ,
+        #{tel} ,
+        #{email} ,
+        #{logonUserName} ,
+        #{domainName} ,
+        #{identify} ,
+        #{allowDail} ,
+        #{registerTime} ,
+        #{lastTime} ,
+        #{attackTime} ,
+        #{reportTime} ,
+        #{unInstallTime} ,
+        #{idleTime} ,
+        #{bootTime} ,
+        #{protectEndTime} ,
+        #{lockedEndTime} ,
+        #{onlineTime} ,
+        #{totalTime} ,
+        #{dayTime} ,
+        #{runStatus} ,
+        #{registered} ,
+        #{agentVersion} ,
+        #{kvsCompany} ,
+        #{kvsVersion} ,
+        #{aclCtrl} ,
+        #{serviceNo} ,
+        #{diskSerial} ,
+        #{productId} ,
+        #{countPatchLevel0} ,
+        #{countPatchLevel1} ,
+        #{countPatchLevel2} ,
+        #{countPatchLevel3} ,
+        #{countPatchLevel4} ,
+        #{validDay} ,
+        #{protect} ,
+        #{locked} ,
+        #{forceout} ,
+        #{runLevel} ,
+        #{deviceStatus} ,
+        #{isLocal} ,
+        #{reserved1} ,
+        #{reserved2} ,
+        #{reserved3} ,
+        #{reserved4} ,
+        #{reserved5} ,
+        #{reserved6} ,
+        #{reserved7} ,
+        #{reserved8} ,
+        #{migrate} ,
+        #{migrateRegIp} ,
+        #{migrateUnitName} ,
+        #{migrateTime} ,
+        #{policemenKind} ,
+        #{intelAmtmode} ,
+        #{intelAmtip} ,
+        #{isIntelAmt} ,
+        #{amtuuid} ,
+        #{amtversion} ,
+        #{regip} ,
+        #{firwallStatus} ,
+        #{description} ,
+        #{computerManufacturer} ,
+        #{computerModel} ,
+        #{externalDevice} ,
+        #{externalDeviceModel} ,
+        #{roomSerial} ,
+        #{deviceNumber} ,
+        #{deviceDesc} ,
+        #{fwPolicy} ,
+        #{allOss} ,
+        #{setupTmos} ,
+        #{osversion} ,
+        #{pki} ,
+        #{healthScore} ,
+        #{healthTime} ,
+        #{synStatus} ,
+        #{activeNetCard} ,
+        #{pkid} ,
+        #{pkiUser} ,
+        #{pkiUnit} ,
+        #{actUser} ,
+        #{loginCount} ,
+        #{tioStatus} ,
+        #{separateFlag} ,
+        #{manualTag} ,
+        #{regionCode} ,
+        #{exField1} ,
+        #{exField2} ,
+        #{exField3} ,
+        #{exField4} ,
+        #{exField5}
+        )
+    </insert>
+    <!-- 单记录删除 -->
+    <delete id="delete" parameterType="java.lang.String">
+        delete from DeviceLog where id=#{id}
+    </delete>
+    <!-- 批量记录删除 -->
+    <delete id="deleteByIds" parameterType="java.util.List">
+        delete from DeviceLog where id in
+        <foreach collection="list" item="ids" open="(" separator="," close=")">#{ids}</foreach>
+    </delete>
+    <!-- 单记录更新 -->
+    <update id="update" parameterType="com.vrv.netmgr.entity.DeviceLog">
+        UPDATE DeviceLog
+        <trim prefix="set" suffixOverrides=",">
+            <if test="#{logType} != null">
+                LogType =#{logType},
+            </if>
+            <if test="#{logTime} != null">
+                LogTime =#{logTime},
+            </if>
+            <if test="#{deviceId} != null">
+                DeviceID =#{deviceId},
+            </if>
+            <if test="#{devOnlyId} != null">
+                DevOnlyID =#{devOnlyId},
+            </if>
+            <if test="#{onlyId} != null">
+                OnlyID =#{onlyId},
+            </if>
+            <if test="#{classId} != null">
+                ClassID =#{classId},
+            </if>
+            <if test="#{contrlId} != null">
+                ContrlID =#{contrlId},
+            </if>
+            <if test="#{deviceCode} != null">
+                DeviceCode =#{deviceCode},
+            </if>
+            <if test="#{regId} != null">
+                RegID =#{regId},
+            </if>
+            <if test="#{deptName} != null">
+                DeptName =#{deptName},
+            </if>
+            <if test="#{officeName} != null">
+                OfficeName =#{officeName},
+            </if>
+            <if test="#{floorNumber} != null">
+                FloorNumber =#{floorNumber},
+            </if>
+            <if test="#{roomNumber} != null">
+                RoomNumber =#{roomNumber},
+            </if>
+            <if test="#{subOffice} != null">
+                SubOffice =#{subOffice},
+            </if>
+            <if test="#{userName} != null">
+                UserName =#{userName},
+            </if>
+            <if test="#{deviceName} != null">
+                DeviceName =#{deviceName},
+            </if>
+            <if test="#{aliasName} != null">
+                AliasName =#{aliasName},
+            </if>
+            <if test="#{switchId} != null">
+                SwitchID =#{switchId},
+            </if>
+            <if test="#{switchName} != null">
+                SwitchName =#{switchName},
+            </if>
+            <if test="#{switchIp} != null">
+                SwitchIP =#{switchIp},
+            </if>
+            <if test="#{switchPort} != null">
+                SwitchPort =#{switchPort},
+            </if>
+            <if test="#{portDescr} != null">
+                PortDescr =#{portDescr},
+            </if>
+            <if test="#{ostype} != null">
+                OSType =#{ostype},
+            </if>
+            <if test="#{osLanguage} != null">
+                OsLanguage =#{osLanguage},
+            </if>
+            <if test="#{spNumber} != null">
+                SpNumber =#{spNumber},
+            </if>
+            <if test="#{ieversion} != null">
+                IEVersion =#{ieversion},
+            </if>
+            <if test="#{cpuType} != null">
+                CpuType =#{cpuType},
+            </if>
+            <if test="#{cpuSerial} != null">
+                CpuSerial =#{cpuSerial},
+            </if>
+            <if test="#{numIpaddress} != null">
+                NumIPAddress =#{numIpaddress},
+            </if>
+            <if test="#{hardware1} != null">
+                Hardware1 =#{hardware1},
+            </if>
+            <if test="#{hardware2} != null">
+                Hardware2 =#{hardware2},
+            </if>
+            <if test="#{ipaddres} != null">
+                IPAddres =#{ipaddres},
+            </if>
+            <if test="#{macAddress} != null">
+                MacAddress =#{macAddress},
+            </if>
+            <if test="#{routeIpaddress} != null">
+                RouteIPAddress =#{routeIpaddress},
+            </if>
+            <if test="#{netWork} != null">
+                NetWork =#{netWork},
+            </if>
+            <if test="#{cpu} != null">
+                CPU =#{cpu},
+            </if>
+            <if test="#{memory} != null">
+                Memory =#{memory},
+            </if>
+            <if test="#{diskSize} != null">
+                DiskSize =#{diskSize},
+            </if>
+            <if test="#{other} != null">
+                Other =#{other},
+            </if>
+            <if test="#{tel} != null">
+                Tel =#{tel},
+            </if>
+            <if test="#{email} != null">
+                Email =#{email},
+            </if>
+            <if test="#{logonUserName} != null">
+                LogonUserName =#{logonUserName},
+            </if>
+            <if test="#{domainName} != null">
+                DomainName =#{domainName},
+            </if>
+            <if test="#{identify} != null">
+                Identify =#{identify},
+            </if>
+            <if test="#{allowDail} != null">
+                AllowDail =#{allowDail},
+            </if>
+            <if test="#{registerTime} != null">
+                RegisterTime =#{registerTime},
+            </if>
+            <if test="#{lastTime} != null">
+                LastTime =#{lastTime},
+            </if>
+            <if test="#{attackTime} != null">
+                AttackTime =#{attackTime},
+            </if>
+            <if test="#{reportTime} != null">
+                ReportTime =#{reportTime},
+            </if>
+            <if test="#{unInstallTime} != null">
+                UnInstallTime =#{unInstallTime},
+            </if>
+            <if test="#{idleTime} != null">
+                IdleTime =#{idleTime},
+            </if>
+            <if test="#{bootTime} != null">
+                BootTime =#{bootTime},
+            </if>
+            <if test="#{protectEndTime} != null">
+                ProtectEndTime =#{protectEndTime},
+            </if>
+            <if test="#{lockedEndTime} != null">
+                LockedEndTime =#{lockedEndTime},
+            </if>
+            <if test="#{onlineTime} != null">
+                OnlineTime =#{onlineTime},
+            </if>
+            <if test="#{totalTime} != null">
+                TotalTime =#{totalTime},
+            </if>
+            <if test="#{dayTime} != null">
+                DayTime =#{dayTime},
+            </if>
+            <if test="#{runStatus} != null">
+                RunStatus =#{runStatus},
+            </if>
+            <if test="#{registered} != null">
+                Registered =#{registered},
+            </if>
+            <if test="#{agentVersion} != null">
+                AgentVersion =#{agentVersion},
+            </if>
+            <if test="#{kvsCompany} != null">
+                KvsCompany =#{kvsCompany},
+            </if>
+            <if test="#{kvsVersion} != null">
+                KvsVersion =#{kvsVersion},
+            </if>
+            <if test="#{aclCtrl} != null">
+                AclCtrl =#{aclCtrl},
+            </if>
+            <if test="#{serviceNo} != null">
+                ServiceNo =#{serviceNo},
+            </if>
+            <if test="#{diskSerial} != null">
+                DiskSerial =#{diskSerial},
+            </if>
+            <if test="#{productId} != null">
+                ProductID =#{productId},
+            </if>
+            <if test="#{countPatchLevel0} != null">
+                CountPatchLevel0 =#{countPatchLevel0},
+            </if>
+            <if test="#{countPatchLevel1} != null">
+                CountPatchLevel1 =#{countPatchLevel1},
+            </if>
+            <if test="#{countPatchLevel2} != null">
+                CountPatchLevel2 =#{countPatchLevel2},
+            </if>
+            <if test="#{countPatchLevel3} != null">
+                CountPatchLevel3 =#{countPatchLevel3},
+            </if>
+            <if test="#{countPatchLevel4} != null">
+                CountPatchLevel4 =#{countPatchLevel4},
+            </if>
+            <if test="#{validDay} != null">
+                ValidDay =#{validDay},
+            </if>
+            <if test="#{protect} != null">
+                Protect =#{protect},
+            </if>
+            <if test="#{locked} != null">
+                Locked =#{locked},
+            </if>
+            <if test="#{forceout} != null">
+                Forceout =#{forceout},
+            </if>
+            <if test="#{runLevel} != null">
+                RunLevel =#{runLevel},
+            </if>
+            <if test="#{deviceStatus} != null">
+                DeviceStatus =#{deviceStatus},
+            </if>
+            <if test="#{isLocal} != null">
+                IsLocal =#{isLocal},
+            </if>
+            <if test="#{reserved1} != null">
+                Reserved1 =#{reserved1},
+            </if>
+            <if test="#{reserved2} != null">
+                Reserved2 =#{reserved2},
+            </if>
+            <if test="#{reserved3} != null">
+                Reserved3 =#{reserved3},
+            </if>
+            <if test="#{reserved4} != null">
+                Reserved4 =#{reserved4},
+            </if>
+            <if test="#{reserved5} != null">
+                Reserved5 =#{reserved5},
+            </if>
+            <if test="#{reserved6} != null">
+                Reserved6 =#{reserved6},
+            </if>
+            <if test="#{reserved7} != null">
+                Reserved7 =#{reserved7},
+            </if>
+            <if test="#{reserved8} != null">
+                Reserved8 =#{reserved8},
+            </if>
+            <if test="#{migrate} != null">
+                Migrate =#{migrate},
+            </if>
+            <if test="#{migrateRegIp} != null">
+                MigrateRegIP =#{migrateRegIp},
+            </if>
+            <if test="#{migrateUnitName} != null">
+                MigrateUnitName =#{migrateUnitName},
+            </if>
+            <if test="#{migrateTime} != null">
+                MigrateTime =#{migrateTime},
+            </if>
+            <if test="#{policemenKind} != null">
+                PolicemenKind =#{policemenKind},
+            </if>
+            <if test="#{intelAmtmode} != null">
+                IntelAMTMode =#{intelAmtmode},
+            </if>
+            <if test="#{intelAmtip} != null">
+                IntelAMTIP =#{intelAmtip},
+            </if>
+            <if test="#{isIntelAmt} != null">
+                IsIntelAMT =#{isIntelAmt},
+            </if>
+            <if test="#{amtuuid} != null">
+                AMTUUID =#{amtuuid},
+            </if>
+            <if test="#{amtversion} != null">
+                AMTVersion =#{amtversion},
+            </if>
+            <if test="#{regip} != null">
+                REGIP =#{regip},
+            </if>
+            <if test="#{firwallStatus} != null">
+                FirwallStatus =#{firwallStatus},
+            </if>
+            <if test="#{description} != null">
+                Description =#{description},
+            </if>
+            <if test="#{computerManufacturer} != null">
+                ComputerManufacturer =#{computerManufacturer},
+            </if>
+            <if test="#{computerModel} != null">
+                ComputerModel =#{computerModel},
+            </if>
+            <if test="#{externalDevice} != null">
+                ExternalDevice =#{externalDevice},
+            </if>
+            <if test="#{externalDeviceModel} != null">
+                ExternalDeviceModel =#{externalDeviceModel},
+            </if>
+            <if test="#{roomSerial} != null">
+                RoomSerial =#{roomSerial},
+            </if>
+            <if test="#{deviceNumber} != null">
+                DeviceNumber =#{deviceNumber},
+            </if>
+            <if test="#{deviceDesc} != null">
+                DeviceDesc =#{deviceDesc},
+            </if>
+            <if test="#{fwPolicy} != null">
+                FwPolicy =#{fwPolicy},
+            </if>
+            <if test="#{allOss} != null">
+                AllOss =#{allOss},
+            </if>
+            <if test="#{setupTmos} != null">
+                SetupTmos =#{setupTmos},
+            </if>
+            <if test="#{osversion} != null">
+                OSVersion =#{osversion},
+            </if>
+            <if test="#{pki} != null">
+                PKI =#{pki},
+            </if>
+            <if test="#{healthScore} != null">
+                HealthScore =#{healthScore},
+            </if>
+            <if test="#{healthTime} != null">
+                HealthTime =#{healthTime},
+            </if>
+            <if test="#{synStatus} != null">
+                SynStatus =#{synStatus},
+            </if>
+            <if test="#{activeNetCard} != null">
+                ActiveNetCard =#{activeNetCard},
+            </if>
+            <if test="#{pkid} != null">
+                Pkid =#{pkid},
+            </if>
+            <if test="#{pkiUser} != null">
+                PkiUser =#{pkiUser},
+            </if>
+            <if test="#{pkiUnit} != null">
+                PkiUnit =#{pkiUnit},
+            </if>
+            <if test="#{actUser} != null">
+                ActUser =#{actUser},
+            </if>
+            <if test="#{loginCount} != null">
+                LoginCount =#{loginCount},
+            </if>
+            <if test="#{tioStatus} != null">
+                TioStatus =#{tioStatus},
+            </if>
+            <if test="#{separateFlag} != null">
+                SeparateFlag =#{separateFlag},
+            </if>
+            <if test="#{manualTag} != null">
+                ManualTag =#{manualTag},
+            </if>
+            <if test="#{regionCode} != null">
+                RegionCode =#{regionCode},
+            </if>
+            <if test="#{exField1} != null">
+                ExField1 =#{exField1},
+            </if>
+            <if test="#{exField2} != null">
+                ExField2 =#{exField2},
+            </if>
+            <if test="#{exField3} != null">
+                ExField3 =#{exField3},
+            </if>
+            <if test="#{exField4} != null">
+                ExField4 =#{exField4},
+            </if>
+            <if test="#{exField5} != null">
+                ExField5 =#{exField5},
+            </if>
+        </trim>
+        where id=#{id}
+    </update>
+    <!-- 查询记录BY ID -->
+    <select id="getById" resultMap="searchResultMap" parameterType="java.lang.String">
+        select
+        <include refid="columns" />
+        from
+        DeviceLog where id=#{id}
+    </select>
+    <!-- 查询所有记录 -->
+    <select id="getAll" resultMap="searchResultMap" parameterType="java.lang.String">
+        select
+        <include refid="columns" />
+        from
+        DeviceLog
+    </select>
+
+    <!-- 动态查询条件 -->
+    <sql id="searchConditionSQL">
+        <trim prefix="where" prefixOverrides="AND |OR ">
+            <if test="id != null">
+                and ID = #{id}
+            </if>
+            <if test="logType != null">
+                and LogType = #{logType}
+            </if>
+            <if test="logTime != null">
+                and LogTime = #{logTime}
+            </if>
+            <if test="deviceId != null">
+                and DeviceID = #{deviceId}
+            </if>
+            <if test="devOnlyId != null">
+                and DevOnlyID = #{devOnlyId}
+            </if>
+            <if test="onlyId != null">
+                and OnlyID = #{onlyId}
+            </if>
+            <if test="classId != null">
+                and ClassID = #{classId}
+            </if>
+            <if test="contrlId != null">
+                and ContrlID = #{contrlId}
+            </if>
+            <if test="deviceCode != null">
+                and DeviceCode = #{deviceCode}
+            </if>
+            <if test="regId != null">
+                and RegID = #{regId}
+            </if>
+            <if test="deptName != null">
+                and DeptName = #{deptName}
+            </if>
+            <if test="officeName != null">
+                and OfficeName = #{officeName}
+            </if>
+            <if test="floorNumber != null">
+                and FloorNumber = #{floorNumber}
+            </if>
+            <if test="roomNumber != null">
+                and RoomNumber = #{roomNumber}
+            </if>
+            <if test="subOffice != null">
+                and SubOffice = #{subOffice}
+            </if>
+            <if test="userName != null">
+                and UserName = #{userName}
+            </if>
+            <if test="deviceName != null">
+                and DeviceName = #{deviceName}
+            </if>
+            <if test="aliasName != null">
+                and AliasName = #{aliasName}
+            </if>
+            <if test="switchId != null">
+                and SwitchID = #{switchId}
+            </if>
+            <if test="switchName != null">
+                and SwitchName = #{switchName}
+            </if>
+            <if test="switchIp != null">
+                and SwitchIP = #{switchIp}
+            </if>
+            <if test="switchPort != null">
+                and SwitchPort = #{switchPort}
+            </if>
+            <if test="portDescr != null">
+                and PortDescr = #{portDescr}
+            </if>
+            <if test="ostype != null">
+                and OSType = #{ostype}
+            </if>
+            <if test="osLanguage != null">
+                and OsLanguage = #{osLanguage}
+            </if>
+            <if test="spNumber != null">
+                and SpNumber = #{spNumber}
+            </if>
+            <if test="ieversion != null">
+                and IEVersion = #{ieversion}
+            </if>
+            <if test="cpuType != null">
+                and CpuType = #{cpuType}
+            </if>
+            <if test="cpuSerial != null">
+                and CpuSerial = #{cpuSerial}
+            </if>
+            <if test="numIpaddress != null">
+                and NumIPAddress = #{numIpaddress}
+            </if>
+            <if test="hardware1 != null">
+                and Hardware1 = #{hardware1}
+            </if>
+            <if test="hardware2 != null">
+                and Hardware2 = #{hardware2}
+            </if>
+            <if test="ipaddres != null">
+                and IPAddres = #{ipaddres}
+            </if>
+            <if test="macAddress != null">
+                and MacAddress = #{macAddress}
+            </if>
+            <if test="routeIpaddress != null">
+                and RouteIPAddress = #{routeIpaddress}
+            </if>
+            <if test="netWork != null">
+                and NetWork = #{netWork}
+            </if>
+            <if test="cpu != null">
+                and CPU = #{cpu}
+            </if>
+            <if test="memory != null">
+                and Memory = #{memory}
+            </if>
+            <if test="diskSize != null">
+                and DiskSize = #{diskSize}
+            </if>
+            <if test="other != null">
+                and Other = #{other}
+            </if>
+            <if test="tel != null">
+                and Tel = #{tel}
+            </if>
+            <if test="email != null">
+                and Email = #{email}
+            </if>
+            <if test="logonUserName != null">
+                and LogonUserName = #{logonUserName}
+            </if>
+            <if test="domainName != null">
+                and DomainName = #{domainName}
+            </if>
+            <if test="identify != null">
+                and Identify = #{identify}
+            </if>
+            <if test="allowDail != null">
+                and AllowDail = #{allowDail}
+            </if>
+            <if test="registerTime != null">
+                and RegisterTime = #{registerTime}
+            </if>
+            <if test="lastTime != null">
+                and LastTime = #{lastTime}
+            </if>
+            <if test="attackTime != null">
+                and AttackTime = #{attackTime}
+            </if>
+            <if test="reportTime != null">
+                and ReportTime = #{reportTime}
+            </if>
+            <if test="unInstallTime != null">
+                and UnInstallTime = #{unInstallTime}
+            </if>
+            <if test="idleTime != null">
+                and IdleTime = #{idleTime}
+            </if>
+            <if test="bootTime != null">
+                and BootTime = #{bootTime}
+            </if>
+            <if test="protectEndTime != null">
+                and ProtectEndTime = #{protectEndTime}
+            </if>
+            <if test="lockedEndTime != null">
+                and LockedEndTime = #{lockedEndTime}
+            </if>
+            <if test="onlineTime != null">
+                and OnlineTime = #{onlineTime}
+            </if>
+            <if test="totalTime != null">
+                and TotalTime = #{totalTime}
+            </if>
+            <if test="dayTime != null">
+                and DayTime = #{dayTime}
+            </if>
+            <if test="runStatus != null">
+                and RunStatus = #{runStatus}
+            </if>
+            <if test="registered != null">
+                and Registered = #{registered}
+            </if>
+            <if test="agentVersion != null">
+                and AgentVersion = #{agentVersion}
+            </if>
+            <if test="kvsCompany != null">
+                and KvsCompany = #{kvsCompany}
+            </if>
+            <if test="kvsVersion != null">
+                and KvsVersion = #{kvsVersion}
+            </if>
+            <if test="aclCtrl != null">
+                and AclCtrl = #{aclCtrl}
+            </if>
+            <if test="serviceNo != null">
+                and ServiceNo = #{serviceNo}
+            </if>
+            <if test="diskSerial != null">
+                and DiskSerial = #{diskSerial}
+            </if>
+            <if test="productId != null">
+                and ProductID = #{productId}
+            </if>
+            <if test="countPatchLevel0 != null">
+                and CountPatchLevel0 = #{countPatchLevel0}
+            </if>
+            <if test="countPatchLevel1 != null">
+                and CountPatchLevel1 = #{countPatchLevel1}
+            </if>
+            <if test="countPatchLevel2 != null">
+                and CountPatchLevel2 = #{countPatchLevel2}
+            </if>
+            <if test="countPatchLevel3 != null">
+                and CountPatchLevel3 = #{countPatchLevel3}
+            </if>
+            <if test="countPatchLevel4 != null">
+                and CountPatchLevel4 = #{countPatchLevel4}
+            </if>
+            <if test="validDay != null">
+                and ValidDay = #{validDay}
+            </if>
+            <if test="protect != null">
+                and Protect = #{protect}
+            </if>
+            <if test="locked != null">
+                and Locked = #{locked}
+            </if>
+            <if test="forceout != null">
+                and Forceout = #{forceout}
+            </if>
+            <if test="runLevel != null">
+                and RunLevel = #{runLevel}
+            </if>
+            <if test="deviceStatus != null">
+                and DeviceStatus = #{deviceStatus}
+            </if>
+            <if test="isLocal != null">
+                and IsLocal = #{isLocal}
+            </if>
+            <if test="reserved1 != null">
+                and Reserved1 = #{reserved1}
+            </if>
+            <if test="reserved2 != null">
+                and Reserved2 = #{reserved2}
+            </if>
+            <if test="reserved3 != null">
+                and Reserved3 = #{reserved3}
+            </if>
+            <if test="reserved4 != null">
+                and Reserved4 = #{reserved4}
+            </if>
+            <if test="reserved5 != null">
+                and Reserved5 = #{reserved5}
+            </if>
+            <if test="reserved6 != null">
+                and Reserved6 = #{reserved6}
+            </if>
+            <if test="reserved7 != null">
+                and Reserved7 = #{reserved7}
+            </if>
+            <if test="reserved8 != null">
+                and Reserved8 = #{reserved8}
+            </if>
+            <if test="migrate != null">
+                and Migrate = #{migrate}
+            </if>
+            <if test="migrateRegIp != null">
+                and MigrateRegIP = #{migrateRegIp}
+            </if>
+            <if test="migrateUnitName != null">
+                and MigrateUnitName = #{migrateUnitName}
+            </if>
+            <if test="migrateTime != null">
+                and MigrateTime = #{migrateTime}
+            </if>
+            <if test="policemenKind != null">
+                and PolicemenKind = #{policemenKind}
+            </if>
+            <if test="intelAmtmode != null">
+                and IntelAMTMode = #{intelAmtmode}
+            </if>
+            <if test="intelAmtip != null">
+                and IntelAMTIP = #{intelAmtip}
+            </if>
+            <if test="isIntelAmt != null">
+                and IsIntelAMT = #{isIntelAmt}
+            </if>
+            <if test="amtuuid != null">
+                and AMTUUID = #{amtuuid}
+            </if>
+            <if test="amtversion != null">
+                and AMTVersion = #{amtversion}
+            </if>
+            <if test="regip != null">
+                and REGIP = #{regip}
+            </if>
+            <if test="firwallStatus != null">
+                and FirwallStatus = #{firwallStatus}
+            </if>
+            <if test="description != null">
+                and Description = #{description}
+            </if>
+            <if test="computerManufacturer != null">
+                and ComputerManufacturer = #{computerManufacturer}
+            </if>
+            <if test="computerModel != null">
+                and ComputerModel = #{computerModel}
+            </if>
+            <if test="externalDevice != null">
+                and ExternalDevice = #{externalDevice}
+            </if>
+            <if test="externalDeviceModel != null">
+                and ExternalDeviceModel = #{externalDeviceModel}
+            </if>
+            <if test="roomSerial != null">
+                and RoomSerial = #{roomSerial}
+            </if>
+            <if test="deviceNumber != null">
+                and DeviceNumber = #{deviceNumber}
+            </if>
+            <if test="deviceDesc != null">
+                and DeviceDesc = #{deviceDesc}
+            </if>
+            <if test="fwPolicy != null">
+                and FwPolicy = #{fwPolicy}
+            </if>
+            <if test="allOss != null">
+                and AllOss = #{allOss}
+            </if>
+            <if test="setupTmos != null">
+                and SetupTmos = #{setupTmos}
+            </if>
+            <if test="osversion != null">
+                and OSVersion = #{osversion}
+            </if>
+            <if test="pki != null">
+                and PKI = #{pki}
+            </if>
+            <if test="healthScore != null">
+                and HealthScore = #{healthScore}
+            </if>
+            <if test="healthTime != null">
+                and HealthTime = #{healthTime}
+            </if>
+            <if test="synStatus != null">
+                and SynStatus = #{synStatus}
+            </if>
+            <if test="activeNetCard != null">
+                and ActiveNetCard = #{activeNetCard}
+            </if>
+            <if test="pkid != null">
+                and Pkid = #{pkid}
+            </if>
+            <if test="pkiUser != null">
+                and PkiUser = #{pkiUser}
+            </if>
+            <if test="pkiUnit != null">
+                and PkiUnit = #{pkiUnit}
+            </if>
+            <if test="actUser != null">
+                and ActUser = #{actUser}
+            </if>
+            <if test="loginCount != null">
+                and LoginCount = #{loginCount}
+            </if>
+            <if test="tioStatus != null">
+                and TioStatus = #{tioStatus}
+            </if>
+            <if test="separateFlag != null">
+                and SeparateFlag = #{separateFlag}
+            </if>
+            <if test="manualTag != null">
+                and ManualTag = #{manualTag}
+            </if>
+            <if test="regionCode != null">
+                and RegionCode = #{regionCode}
+            </if>
+            <if test="exField1 != null">
+                and ExField1 = #{exField1}
+            </if>
+            <if test="exField2 != null">
+                and ExField2 = #{exField2}
+            </if>
+            <if test="exField3 != null">
+                and ExField3 = #{exField3}
+            </if>
+            <if test="exField4 != null">
+                and ExField4 = #{exField4}
+            </if>
+            <if test="exField5 != null">
+                and ExField5 = #{exField5}
+            </if>
+        </trim>
+    </sql>
+    <select id="search" resultMap="searchResultMap" useCache="true" parameterType="com.vrv.netmgr.vo.DeviceLogSearchCondition">
+        select
+        <include refid="columns" />
+        from DeviceLog
+        <include refid="searchConditionSQL" />
+    </select>
+
+    <select id="selectPage" resultMap="searchResultMap" useCache="true" parameterType="com.vrv.netmgr.vo.DeviceLogSearchCondition" resultSetType="SCROLL_INSENSITIVE">
+        select
+        <include refid="columns" />
+        from DeviceLog
+        <include refid="searchConditionSQL" />
+    </select>
+    <select id="selectPageCount" resultType="long" parameterType="com.vrv.netmgr.vo.DeviceLogSearchCondition" resultSetType="SCROLL_INSENSITIVE">
+        select count(id) from DeviceLog
+        <include refid="searchConditionSQL" />
+    </select>
+
+    <select id="searchDeviceLogByDate" resultType="java.util.Map" >
+        SELECT CONVERT(varchar(100), LogTime, 23) as LogTime,COUNT(CONVERT(varchar(100), LogTime, 23)) as Num
+        FROM DeviceLog
+        GROUP BY CONVERT(varchar(100), LogTime, 23)
+        HAVING CONVERT(varchar(100), LogTime, 23) IN
+        <foreach item="item" index="index" collection="array" open="(" separator="," close=")"> #{item} </foreach>
+        ORDER BY CONVERT(varchar(100), LogTime, 23) DESC
+    </select>
+</mapper>

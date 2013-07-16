@@ -1,0 +1,457 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="com.vrv.netmgr.dao.mapper.PmoveableDiskEventMapper">
+    <!-- 查询结果映射 -->
+    <resultMap id="searchResultMap" type="com.vrv.netmgr.entity.PmoveableDiskEvent">
+        <result property="peventId" column="PEventID" />
+        <result property="onlyId" column="OnlyID" />
+        <result property="deviceName" column="DeviceName" />
+        <result property="ipaddress" column="IPAddress" />
+        <result property="ipnum" column="IPNum" />
+        <result property="macAddress" column="MacAddress" />
+        <result property="classId" column="ClassID" />
+        <result property="className" column="ClassName" />
+        <result property="unitName" column="UnitName" />
+        <result property="deptName" column="DeptName" />
+        <result property="userName" column="UserName" />
+        <result property="tel" column="Tel" />
+        <result property="udiskUnit" column="UdiskUnit" />
+        <result property="udiskDept" column="UdiskDept" />
+        <result property="policyId" column="PolicyID" />
+        <result property="policyName" column="PolicyName" />
+        <result property="auditTypeBigNum" column="AuditTypeBigNum" />
+        <result property="extNum" column="ExtNum" />
+        <result property="yearMonth" column="YearMonth" />
+        <result property="description" column="Description" />
+        <result property="upTime" column="UpTime" />
+        <result property="clientTime" column="ClientTime" />
+        <result property="authUserName" column="AuthUserName" />
+        <result property="lookFlag" column="LookFlag" />
+        <result property="exField1" column="ExField1" />
+        <result property="exField2" column="ExField2" />
+        <result property="exField3" column="ExField3" />
+        <result property="exField4" column="ExField4" />
+        <result property="exField5" column="ExField5" />
+        <result property="reserved1" column="Reserved1" />
+        <result property="reserved2" column="Reserved2" />
+        <result property="pkid" column="Pkid" />
+        <result property="pkiUser" column="PkiUser" />
+        <result property="pkiUnit" column="PkiUnit" />
+        <result property="exField6" column="ExField6" />
+        <result property="exField7" column="ExField7" />
+        <result property="exField8" column="ExField8" />
+    </resultMap>
+    <!-- 用于select查询公用抽取的列 -->
+    <sql id="columns">
+        PEventID,OnlyID,DeviceName,IPAddress,IPNum,MacAddress,ClassID,ClassName,UnitName,DeptName,UserName,Tel,UdiskUnit,UdiskDept,PolicyID,PolicyName,AuditTypeBigNum,ExtNum,YearMonth,Description,UpTime,ClientTime,AuthUserName,LookFlag,ExField1,ExField2,ExField3,ExField4,ExField5,Reserved1,Reserved2,Pkid,PkiUser,PkiUnit,ExField6,ExField7,ExField8
+    </sql>
+    <!-- 新增记录 -->
+    <insert id="insert" parameterType="com.vrv.netmgr.entity.PmoveableDiskEvent">
+        INSERT INTO PMoveableDiskEvent (
+            PEventID ,
+            OnlyID ,
+            DeviceName ,
+            IPAddress ,
+            IPNum ,
+            MacAddress ,
+            ClassID ,
+            ClassName ,
+            UnitName ,
+            DeptName ,
+            UserName ,
+            Tel ,
+            UdiskUnit ,
+            UdiskDept ,
+            PolicyID ,
+            PolicyName ,
+            AuditTypeBigNum ,
+            ExtNum ,
+            YearMonth ,
+            Description ,
+            UpTime ,
+            ClientTime ,
+            AuthUserName ,
+            LookFlag ,
+            ExField1 ,
+            ExField2 ,
+            ExField3 ,
+            ExField4 ,
+            ExField5 ,
+            Reserved1 ,
+            Reserved2 ,
+            Pkid ,
+            PkiUser ,
+            PkiUnit ,
+            ExField6 ,
+            ExField7 ,
+            ExField8
+        ) VALUES (
+        #{peventId} ,
+        #{onlyId} ,
+        #{deviceName} ,
+        #{ipaddress} ,
+        #{ipnum} ,
+        #{macAddress} ,
+        #{classId} ,
+        #{className} ,
+        #{unitName} ,
+        #{deptName} ,
+        #{userName} ,
+        #{tel} ,
+        #{udiskUnit} ,
+        #{udiskDept} ,
+        #{policyId} ,
+        #{policyName} ,
+        #{auditTypeBigNum} ,
+        #{extNum} ,
+        #{yearMonth} ,
+        #{description} ,
+        #{upTime} ,
+        #{clientTime} ,
+        #{authUserName} ,
+        #{lookFlag} ,
+        #{exField1} ,
+        #{exField2} ,
+        #{exField3} ,
+        #{exField4} ,
+        #{exField5} ,
+        #{reserved1} ,
+        #{reserved2} ,
+        #{pkid} ,
+        #{pkiUser} ,
+        #{pkiUnit} ,
+        #{exField6} ,
+        #{exField7} ,
+        #{exField8}
+        )
+    </insert>
+    <!-- 单记录删除 -->
+    <delete id="delete" parameterType="java.lang.String">
+        delete from PMoveableDiskEvent where id=#{id}
+    </delete>
+    <!-- 批量记录删除 -->
+    <delete id="deleteByIds" parameterType="java.util.List">
+        delete from PMoveableDiskEvent where id in
+        <foreach collection="list" item="ids" open="(" separator="," close=")">#{ids}</foreach>
+    </delete>
+    <!-- 单记录更新 -->
+    <update id="update" parameterType="com.vrv.netmgr.entity.PmoveableDiskEvent">
+        UPDATE PMoveableDiskEvent
+        <trim prefix="set" suffixOverrides=",">
+            <if test="#{onlyId} != null">
+                OnlyID =#{onlyId},
+            </if>
+            <if test="#{deviceName} != null">
+                DeviceName =#{deviceName},
+            </if>
+            <if test="#{ipaddress} != null">
+                IPAddress =#{ipaddress},
+            </if>
+            <if test="#{ipnum} != null">
+                IPNum =#{ipnum},
+            </if>
+            <if test="#{macAddress} != null">
+                MacAddress =#{macAddress},
+            </if>
+            <if test="#{classId} != null">
+                ClassID =#{classId},
+            </if>
+            <if test="#{className} != null">
+                ClassName =#{className},
+            </if>
+            <if test="#{unitName} != null">
+                UnitName =#{unitName},
+            </if>
+            <if test="#{deptName} != null">
+                DeptName =#{deptName},
+            </if>
+            <if test="#{userName} != null">
+                UserName =#{userName},
+            </if>
+            <if test="#{tel} != null">
+                Tel =#{tel},
+            </if>
+            <if test="#{udiskUnit} != null">
+                UdiskUnit =#{udiskUnit},
+            </if>
+            <if test="#{udiskDept} != null">
+                UdiskDept =#{udiskDept},
+            </if>
+            <if test="#{policyId} != null">
+                PolicyID =#{policyId},
+            </if>
+            <if test="#{policyName} != null">
+                PolicyName =#{policyName},
+            </if>
+            <if test="#{auditTypeBigNum} != null">
+                AuditTypeBigNum =#{auditTypeBigNum},
+            </if>
+            <if test="#{extNum} != null">
+                ExtNum =#{extNum},
+            </if>
+            <if test="#{yearMonth} != null">
+                YearMonth =#{yearMonth},
+            </if>
+            <if test="#{description} != null">
+                Description =#{description},
+            </if>
+            <if test="#{upTime} != null">
+                UpTime =#{upTime},
+            </if>
+            <if test="#{clientTime} != null">
+                ClientTime =#{clientTime},
+            </if>
+            <if test="#{authUserName} != null">
+                AuthUserName =#{authUserName},
+            </if>
+            <if test="#{lookFlag} != null">
+                LookFlag =#{lookFlag},
+            </if>
+            <if test="#{exField1} != null">
+                ExField1 =#{exField1},
+            </if>
+            <if test="#{exField2} != null">
+                ExField2 =#{exField2},
+            </if>
+            <if test="#{exField3} != null">
+                ExField3 =#{exField3},
+            </if>
+            <if test="#{exField4} != null">
+                ExField4 =#{exField4},
+            </if>
+            <if test="#{exField5} != null">
+                ExField5 =#{exField5},
+            </if>
+            <if test="#{reserved1} != null">
+                Reserved1 =#{reserved1},
+            </if>
+            <if test="#{reserved2} != null">
+                Reserved2 =#{reserved2},
+            </if>
+            <if test="#{pkid} != null">
+                Pkid =#{pkid},
+            </if>
+            <if test="#{pkiUser} != null">
+                PkiUser =#{pkiUser},
+            </if>
+            <if test="#{pkiUnit} != null">
+                PkiUnit =#{pkiUnit},
+            </if>
+            <if test="#{exField6} != null">
+                ExField6 =#{exField6},
+            </if>
+            <if test="#{exField7} != null">
+                ExField7 =#{exField7},
+            </if>
+            <if test="#{exField8} != null">
+                ExField8 =#{exField8},
+            </if>
+        </trim>
+        where id=#{id}
+    </update>
+    <!-- 查询记录BY ID -->
+    <select id="getById" resultMap="searchResultMap" parameterType="java.lang.String">
+        select
+        <include refid="columns" />
+        from
+        PMoveableDiskEvent where id=#{id}
+    </select>
+    <!-- 查询所有记录 -->
+    <select id="getAll" resultMap="searchResultMap" parameterType="java.lang.String">
+        select
+        <include refid="columns" />
+        from
+        PMoveableDiskEvent
+    </select>
+
+    <!-- 动态查询条件 -->
+    <sql id="searchConditionSQL">
+        <trim prefix="where" prefixOverrides="AND |OR ">
+            <if test="peventId != null">
+                and PEventID = #{peventId}
+            </if>
+            <if test="onlyId != null">
+                and OnlyID = #{onlyId}
+            </if>
+            <if test="deviceName != null">
+                and DeviceName = #{deviceName}
+            </if>
+            <if test="ipaddress != null">
+                and IPAddress like '%${ipaddress}%'
+            </if>
+            <if test="ipnum != null">
+                and IPNum = #{ipnum}
+            </if>
+            <if test="macAddress != null">
+                and MacAddress = #{macAddress}
+            </if>
+            <if test="classId != null">
+                and ClassID = #{classId}
+            </if>
+            <if test="className != null">
+                and ClassName = #{className}
+            </if>
+            <if test="unitName != null">
+                and UnitName = #{unitName}
+            </if>
+            <if test="deptName != null">
+                and DeptName = #{deptName}
+            </if>
+            <if test="userName != null">
+                and UserName = #{userName}
+            </if>
+            <if test="tel != null">
+                and Tel = #{tel}
+            </if>
+            <if test="udiskUnit != null">
+                and UdiskUnit = #{udiskUnit}
+            </if>
+            <if test="udiskDept != null">
+                and UdiskDept = #{udiskDept}
+            </if>
+            <if test="policyId != null">
+                and PolicyID = #{policyId}
+            </if>
+            <if test="policyName != null">
+                and PolicyName = #{policyName}
+            </if>
+            <if test="auditTypeBigNum != null">
+                and AuditTypeBigNum = #{auditTypeBigNum}
+            </if>
+            <if test="extNum != null">
+                and ExtNum = #{extNum}
+            </if>
+            <if test="yearMonth != null">
+                and YearMonth = #{yearMonth}
+            </if>
+            <if test="description != null">
+                and Description = #{description}
+            </if>
+            <if test="upTime != null">
+                and UpTime = #{upTime}
+            </if>
+            <if test="clientTime != null">
+                and ClientTime = #{clientTime}
+            </if>
+            <if test="authUserName != null">
+                and AuthUserName = #{authUserName}
+            </if>
+            <if test="lookFlag != null">
+                and LookFlag = #{lookFlag}
+            </if>
+            <if test="exField1 != null">
+                and ExField1 = #{exField1}
+            </if>
+            <if test="exField2 != null">
+                and ExField2 = #{exField2}
+            </if>
+            <if test="exField3 != null">
+                and ExField3 = #{exField3}
+            </if>
+            <if test="exField4 != null">
+                and ExField4 = #{exField4}
+            </if>
+            <if test="exField5 != null">
+                and ExField5 = #{exField5}
+            </if>
+            <if test="reserved1 != null">
+                and Reserved1 = #{reserved1}
+            </if>
+            <if test="reserved2 != null">
+                and Reserved2 = #{reserved2}
+            </if>
+            <if test="pkid != null">
+                and Pkid = #{pkid}
+            </if>
+            <if test="pkiUser != null">
+                and PkiUser = #{pkiUser}
+            </if>
+            <if test="pkiUnit != null">
+                and PkiUnit = #{pkiUnit}
+            </if>
+            <if test="exField6 != null">
+                and ExField6 = #{exField6}
+            </if>
+            <if test="exField7 != null">
+                and ExField7 = #{exField7}
+            </if>
+            <if test="exField8 != null">
+                and ExField8 = #{exField8}
+            </if>
+        </trim>
+    </sql>
+    <select id="search" resultMap="searchResultMap" useCache="true" parameterType="com.vrv.netmgr.vo.PmoveableDiskEventSearchCondition">
+        select
+        <include refid="columns" />
+        from PMoveableDiskEvent
+        <include refid="searchConditionSQL" />
+    </select>
+
+    <select id="selectPage" resultMap="searchResultMap" useCache="true" parameterType="com.vrv.netmgr.vo.PmoveableDiskEventSearchCondition" resultSetType="SCROLL_INSENSITIVE">
+        select
+        <include refid="columns" />
+        from PMoveableDiskEvent
+        <include refid="searchConditionSQL" />
+    </select>
+    <select id="selectPageCount" resultType="long" parameterType="com.vrv.netmgr.vo.PmoveableDiskEventSearchCondition" resultSetType="SCROLL_INSENSITIVE">
+        select count(peventId) from PMoveableDiskEvent
+        <include refid="searchConditionSQL" />
+    </select>
+
+    <!-- 过去一周的审计信息 -->
+    <select id="searchPastWeekAuditInfo" resultType="java.util.Map" >
+        SELECT CONVERT(varchar(100),uptime, 23) as AuditTime,count(CONVERT(varchar(100),uptime, 23)) as Num
+        FROM PMoveableDiskEvent
+        GROUP BY CONVERT(varchar(100),uptime, 23)
+        HAVING CONVERT(varchar(100),uptime, 23) IN
+        <foreach item="item" index="index" collection="array" open="(" separator="," close=")"> #{item} </foreach>
+        ORDER BY CONVERT(varchar(100),uptime, 23) DESC
+    </select>
+    
+    <!-- #### -->
+    <select id="selectSoftAndProcInfo" resultType="com.vrv.netmgr.entity.PmoveableDiskEvent" parameterType="com.vrv.netmgr.vo.PmoveableDiskEventSearchCondition">
+        SELECT
+            DeviceID			as onlyId				,
+            DeviceName			as deviceName			,
+            IPAddress			as ipaddress			,
+            Tel					as tel					,
+            ClassID				as classID				,
+            ClassName			as className			,
+            UnitName			as unitName				,
+            DeptName			as deptName				,
+            UserName			as userName				,
+            Description			as description			,
+            v.AuditTypeBigNum	as auditTypeBigNum		,
+            ExtNum				as extNum				,
+            UpTime				as upTime				,
+            ClientTime			as clientTime			,
+            PolicyID			as policyID				,
+            PolicyName			as policyName
+        FROM (
+            select OnlyID as DeviceID,DeviceName,IPAddress,Tel,ClassID,ClassName,UnitName,DeptName,UserName,Description,AuditTypeBigNum,ExtNum,UpTime,ClientTime,PolicyID,PolicyName FROM PSoftInfoEvent
+            UNION ALL
+            SELECT OnlyID as DeviceID,DeviceName,IPAddress,Tel,ClassID,ClassName,UnitName,DeptName,UserName,Description,AuditTypeBigNum,ExtNum,UpTime,ClientTime,PolicyID,PolicyName FROM PMoveableDiskEvent
+            UNION ALL
+            SELECT DeviceID,DeviceName,IPAddress,Tel,ClassID,ClassName,UnitName,DeptName,UserName,Description,AuditTypeBigNum,ExtNum,UpTime,ClientTime,PolicyID,PolicyName FROM NetworkCheckEvent
+        ) v LEFT JOIN AuditTypeList a ON v.ExtNum = a.AuditTypeNum
+        WHERE v.AuditTypeBigNum=2 AND v.ExtNum &lt;&gt;703 AND ClassID = 1
+        ORDER BY UpTime ASC
+    </select>
+    
+    <select id="selectSoftAndProcInfoCount" resultType="long" parameterType="com.vrv.netmgr.vo.PmoveableDiskEventSearchCondition" resultSetType="SCROLL_INSENSITIVE">
+        Select count(v2.DeviceID)
+        from (
+            SELECT DeviceID,DeviceName,IPAddress,Tel,ClassID,ClassName,UnitName,DeptName,UserName,Description,v.AuditTypeBigNum,ExtNum,UpTime,ClientTime,PolicyID,PolicyName FROM (
+                select OnlyID as DeviceID,DeviceName,IPAddress,Tel,ClassID,ClassName,UnitName,DeptName,UserName,Description,AuditTypeBigNum,ExtNum,UpTime,ClientTime,PolicyID,PolicyName FROM PSoftInfoEvent
+                UNION ALL
+                SELECT OnlyID as DeviceID,DeviceName,IPAddress,Tel,ClassID,ClassName,UnitName,DeptName,UserName,Description,AuditTypeBigNum,ExtNum,UpTime,ClientTime,PolicyID,PolicyName FROM PMoveableDiskEvent
+                UNION ALL
+                SELECT DeviceID,DeviceName,IPAddress,Tel,ClassID,ClassName,UnitName,DeptName,UserName,Description,AuditTypeBigNum,ExtNum,UpTime,ClientTime,PolicyID,PolicyName FROM NetworkCheckEvent
+            ) v LEFT JOIN AuditTypeList a ON v.ExtNum = a.AuditTypeNum
+            WHERE v.AuditTypeBigNum=2 AND v.ExtNum &lt;&gt;703 AND ClassID = 1
+        )v2
+    </select>
+
+</mapper>

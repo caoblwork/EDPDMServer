@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="com.vrv.netmgr.dao.mapper.SoftwareChangeMapper">
+    <!-- 查询结果映射 -->
+    <resultMap id="searchResultMap" type="com.vrv.netmgr.entity.SoftwareChange">
+        <result property="id" column="ID" />
+        <result property="deviceId" column="DeviceID" />
+        <result property="softCrc" column="SoftCRC" />
+        <result property="setupTime" column="SetupTime" />
+        <result property="softwareName" column="SoftwareName" />
+        <result property="setupPath" column="SetupPath" />
+        <result property="version" column="Version" />
+        <result property="findTime" column="FindTime" />
+        <result property="unInstallTime" column="UnInstallTime" />
+        <result property="suspicious" column="Suspicious" />
+        <result property="display" column="Display" />
+        <result property="flag" column="Flag" />
+    </resultMap>
+    <!-- 用于select查询公用抽取的列 -->
+    <sql id="columns">
+        ID,DeviceID,SoftCRC,SetupTime,SoftwareName,SetupPath,Version,FindTime,UnInstallTime,Suspicious,Display,Flag
+    </sql>
+    <!-- 新增记录 -->
+    <insert id="insert" parameterType="com.vrv.netmgr.entity.SoftwareChange">
+        INSERT INTO SoftwareChange (
+            ID ,
+            DeviceID ,
+            SoftCRC ,
+            SetupTime ,
+            SoftwareName ,
+            SetupPath ,
+            Version ,
+            FindTime ,
+            UnInstallTime ,
+            Suspicious ,
+            Display ,
+            Flag
+        ) VALUES (
+        #{id} ,
+        #{deviceId} ,
+        #{softCrc} ,
+        #{setupTime} ,
+        #{softwareName} ,
+        #{setupPath} ,
+        #{version} ,
+        #{findTime} ,
+        #{unInstallTime} ,
+        #{suspicious} ,
+        #{display} ,
+        #{flag}
+        )
+    </insert>
+    <!-- 单记录删除 -->
+    <delete id="delete" parameterType="java.lang.String">
+        delete from SoftwareChange where id=#{id}
+    </delete>
+    <!-- 批量记录删除 -->
+    <delete id="deleteByIds" parameterType="java.util.List">
+        delete from SoftwareChange where id in
+        <foreach collection="list" item="ids" open="(" separator="," close=")">#{ids}</foreach>
+    </delete>
+    <!-- 单记录更新 -->
+    <update id="update" parameterType="com.vrv.netmgr.entity.SoftwareChange">
+        UPDATE SoftwareChange
+        <trim prefix="set" suffixOverrides=",">
+            <if test="#{deviceId} != null">
+                DeviceID =#{deviceId},
+            </if>
+            <if test="#{softCrc} != null">
+                SoftCRC =#{softCrc},
+            </if>
+            <if test="#{setupTime} != null">
+                SetupTime =#{setupTime},
+            </if>
+            <if test="#{softwareName} != null">
+                SoftwareName =#{softwareName},
+            </if>
+            <if test="#{setupPath} != null">
+                SetupPath =#{setupPath},
+            </if>
+            <if test="#{version} != null">
+                Version =#{version},
+            </if>
+            <if test="#{findTime} != null">
+                FindTime =#{findTime},
+            </if>
+            <if test="#{unInstallTime} != null">
+                UnInstallTime =#{unInstallTime},
+            </if>
+            <if test="#{suspicious} != null">
+                Suspicious =#{suspicious},
+            </if>
+            <if test="#{display} != null">
+                Display =#{display},
+            </if>
+            <if test="#{flag} != null">
+                Flag =#{flag},
+            </if>
+        </trim>
+        where id=#{id}
+    </update>
+    <!-- 查询记录BY ID -->
+    <select id="getById" resultMap="searchResultMap" parameterType="java.lang.String">
+        select
+        <include refid="columns" />
+        from
+        SoftwareChange where id=#{id}
+    </select>
+    <!-- 查询所有记录 -->
+    <select id="getAll" resultMap="searchResultMap" parameterType="java.lang.String">
+        select
+        <include refid="columns" />
+        from
+        SoftwareChange
+    </select>
+
+    <!-- 动态查询条件 -->
+    <sql id="searchConditionSQL">
+        <trim prefix="where" prefixOverrides="AND |OR ">
+            <if test="id != null">
+                and ID = #{id}
+            </if>
+            <if test="deviceId != null">
+                and DeviceID = #{deviceId}
+            </if>
+            <if test="softCrc != null">
+                and SoftCRC = #{softCrc}
+            </if>
+            <if test="setupTime != null">
+                and SetupTime = #{setupTime}
+            </if>
+            <if test="softwareName != null">
+                and SoftwareName = #{softwareName}
+            </if>
+            <if test="setupPath != null">
+                and SetupPath = #{setupPath}
+            </if>
+            <if test="version != null">
+                and Version = #{version}
+            </if>
+            <!--
+            <if test="findTime != null">
+                and FindTime = #{findTime}
+            </if>
+
+            <if test="unInstallTime != null">
+                and UnInstallTime = #{unInstallTime}
+            </if>
+             -->
+            <if test="suspicious != null">
+                and Suspicious = #{suspicious}
+            </if>
+            <if test="display != null">
+                and Display = #{display}
+            </if>
+            <if test="flag != null">
+                and Flag = #{flag}
+            </if>
+        </trim>
+    </sql>
+    <select id="search" resultMap="searchResultMap" useCache="true" parameterType="com.vrv.netmgr.vo.SoftwareChangeSearchCondition">
+        select
+        <include refid="columns" />
+        from SoftwareChange
+        <include refid="searchConditionSQL" />
+    </select>
+
+    <select id="selectPage" resultMap="searchResultMap" useCache="true" parameterType="com.vrv.netmgr.vo.SoftwareChangeSearchCondition" resultSetType="SCROLL_INSENSITIVE">
+        select
+            SoftwareChange.ID				AS id,
+            SoftwareChange.SoftwareName		AS softwareName,
+            SoftwareChange.SetupTime		AS setupTime,
+            SoftwareChange.UnInstallTime	AS unInstallTime,
+            SoftwareChange.FindTime			AS findTime,
+            SoftwareChange.Display			AS display,
+            SoftwareChange.Flag				AS flag,
+            SoftwareChange.Suspicious		AS suspicious,
+
+            Device.DeviceID					AS 'device.deviceID',
+            Device.DeptName					AS 'device.deptName',
+            Device.RouteIPAddress			AS 'device.routeIPAddress',
+            Device.OfficeName				AS 'device.officeName',
+            Device.Tel						AS 'device.tel',
+            Device.DeviceCode				AS 'device.deviceCode',
+            Device.UserName					AS 'device.userName',
+            Device.DeviceName				AS 'device.deviceName',
+            Device.ClassID					AS 'device.classID',
+            Class.ClassName					AS 'device.className',
+            Device.IPAddres					AS 'device.iPAddres',
+            Device.NumIPAddress				AS 'device.numIPAddress'
+
+        from SoftwareChange INNER JOIN Device ON SoftwareChange.DeviceID = Device.DeviceID INNER JOIN Class ON Device.ClassID = Class.ClassID
+        <include refid="searchConditionSQL" />
+    </select>
+    <select id="selectPageCount" resultType="long" parameterType="com.vrv.netmgr.vo.SoftwareChangeSearchCondition" resultSetType="SCROLL_INSENSITIVE">
+    select count(id) from SoftwareChange INNER JOIN Device ON SoftwareChange.DeviceID = Device.DeviceID INNER JOIN Class ON Device.ClassID = Class.ClassID
+        <include refid="searchConditionSQL" />
+    </select>
+</mapper>

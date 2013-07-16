@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="com.vrv.netmgr.dao.mapper.OsSetupLogMapper">
+
+    <!-- 查询结果映射 -->
+    <resultMap id="searchResultMap" type="com.vrv.netmgr.entity.OsSetupLog">
+        <result property="id" column="ID" />
+        <result property="deviceId" column="DeviceID" />
+        <result property="uuid" column="UUID" />
+        <result property="osname" column="OSName" />
+        <result property="setupTime" column="SetupTime" />
+        <result property="rptTime" column="RptTime" />
+        <result property="diskSerial" column="DiskSerial" />
+        <result property="diskModel" column="DiskModel" />
+        <result property="diskSize" column="DiskSize" />
+        <result property="exField1" column="ExField1" />
+        <result property="exField2" column="ExField2" />
+        <result property="exField3" column="ExField3" />
+        <result property="exField4" column="ExField4" />
+        <result property="exField5" column="ExField5" />
+        <result property="exField6" column="ExField6" />
+    </resultMap>
+    <!-- 用于select查询公用抽取的列 -->
+    <sql id="columns">
+        ID,DeviceID,UUID,OSName,SetupTime,RptTime,DiskSerial,DiskModel,DiskSize,ExField1,ExField2,ExField3,ExField4,ExField5,ExField6
+    </sql>
+    <!-- 新增记录 -->
+    <insert id="insert" parameterType="com.vrv.netmgr.entity.OsSetupLog">
+        INSERT INTO OsSetupLog (
+        ID ,
+        DeviceID ,
+        UUID ,
+        OSName ,
+        SetupTime ,
+        RptTime ,
+        DiskSerial ,
+        DiskModel ,
+        DiskSize ,
+        ExField1 ,
+        ExField2 ,
+        ExField3 ,
+        ExField4 ,
+        ExField5 ,
+        ExField6
+        ) VALUES (
+        #{id} ,
+        #{deviceId} ,
+        #{uuid} ,
+        #{osname} ,
+        #{setupTime} ,
+        #{rptTime} ,
+        #{diskSerial} ,
+        #{diskModel} ,
+        #{diskSize} ,
+        #{exField1} ,
+        #{exField2} ,
+        #{exField3} ,
+        #{exField4} ,
+        #{exField5} ,
+        #{exField6}
+        )
+    </insert>
+    <!-- 单记录删除 -->
+    <delete id="delete" parameterType="java.lang.String">
+        delete from OsSetupLog where id=#{id}
+    </delete>
+    <!-- 批量记录删除 -->
+    <delete id="deleteByIds" parameterType="java.util.List">
+        delete from OsSetupLog where id in
+        <foreach collection="list" item="ids" open="(" separator="," close=")">#{ids}</foreach>
+    </delete>
+    <!-- 单记录更新 -->
+    <update id="update" parameterType="com.vrv.netmgr.entity.OsSetupLog">
+        UPDATE OsSetupLog
+        <trim prefix="set" suffixOverrides=",">
+            <if test="#{deviceId} != null">
+                DeviceID =#{deviceId},
+            </if>
+            <if test="#{uuid} != null">
+                UUID =#{uuid},
+            </if>
+            <if test="#{osname} != null">
+                OSName =#{osname},
+            </if>
+            <if test="#{setupTime} != null">
+                SetupTime =#{setupTime},
+            </if>
+            <if test="#{rptTime} != null">
+                RptTime =#{rptTime},
+            </if>
+            <if test="#{diskSerial} != null">
+                DiskSerial =#{diskSerial},
+            </if>
+            <if test="#{diskModel} != null">
+                DiskModel =#{diskModel},
+            </if>
+            <if test="#{diskSize} != null">
+                DiskSize =#{diskSize},
+            </if>
+            <if test="#{exField1} != null">
+                ExField1 =#{exField1},
+            </if>
+            <if test="#{exField2} != null">
+                ExField2 =#{exField2},
+            </if>
+            <if test="#{exField3} != null">
+                ExField3 =#{exField3},
+            </if>
+            <if test="#{exField4} != null">
+                ExField4 =#{exField4},
+            </if>
+            <if test="#{exField5} != null">
+                ExField5 =#{exField5},
+            </if>
+            <if test="#{exField6} != null">
+                ExField6 =#{exField6},
+            </if>
+        </trim>
+        where id=#{id}
+    </update>
+    <!-- 查询记录BY ID -->
+    <select id="getById" resultMap="searchResultMap" parameterType="java.lang.String">
+        select
+        <include refid="columns" />
+        from
+        OsSetupLog where id=#{id}
+    </select>
+    <!-- 查询所有记录 -->
+    <select id="getAll" resultMap="searchResultMap" parameterType="java.lang.String">
+        select
+        <include refid="columns" />
+        from
+        OsSetupLog
+    </select>
+
+    <!-- 动态查询条件 -->
+    <sql id="searchConditionSQL">
+        <trim prefix="where" prefixOverrides="AND |OR ">
+            <if test="id != null">
+                and ID = #{id}
+            </if>
+            <if test="deviceId != null">
+                and DeviceID = #{deviceId}
+            </if>
+            <if test="uuid != null">
+                and UUID = #{uuid}
+            </if>
+            <if test="osname != null">
+                and OSName = #{osname}
+            </if>
+            <!--
+            <if test="setupTime != null">
+                and SetupTime = #{setupTime}
+            </if>
+            <if test="rptTime != null">
+                and RptTime = #{rptTime}
+            </if>
+             -->
+            <if test="diskSerial != null">
+                and DiskSerial = #{diskSerial}
+            </if>
+            <if test="diskModel != null">
+                and DiskModel = #{diskModel}
+            </if>
+            <if test="diskSize != null">
+                and DiskSize = #{diskSize}
+            </if>
+            <if test="exField1 != null">
+                and ExField1 = #{exField1}
+            </if>
+            <if test="exField2 != null">
+                and ExField2 = #{exField2}
+            </if>
+            <if test="exField3 != null">
+                and ExField3 = #{exField3}
+            </if>
+            <if test="exField4 != null">
+                and ExField4 = #{exField4}
+            </if>
+            <if test="exField5 != null">
+                and ExField5 = #{exField5}
+            </if>
+            <if test="exField6 != null">
+                and ExField6 = #{exField6}
+            </if>
+        </trim>
+    </sql>
+    <select id="search" resultMap="searchResultMap" useCache="true" parameterType="com.vrv.netmgr.vo.OsSetupLogSearchCondition">
+        select
+        <include refid="columns" />
+        from OsSetupLog
+        <include refid="searchConditionSQL" />
+    </select>
+
+    <select id="selectPage" resultMap="searchResultMap" useCache="true" parameterType="com.vrv.netmgr.vo.OsSetupLogSearchCondition" resultSetType="SCROLL_INSENSITIVE">
+        SELECT
+            OsSetupLog.UUID              AS uuid,
+            OsSetupLog.OSName            AS osName,
+            OsSetupLog.setupTime         AS setupTime,
+            OsSetupLog.RptTime           AS rptTime,
+
+            Device.ClassID               AS 'device.classID',
+            Class.ClassName              AS 'device.className',
+            Device.deptName              AS 'device.deptName',
+            Device.officeName            AS 'device.officeName',
+            Device.IPAddres              AS 'device.ipaddres',
+            Device.UserName              AS 'device.userName'
+
+        FROM OsSetupLog LEFT JOIN Device ON OsSetupLog.DeviceID = Device.DeviceID INNER JOIN Class ON Device.ClassID = Class.ClassID
+        <include refid="searchConditionSQL" />
+    </select>
+    <select id="selectPageCount" resultType="long" parameterType="com.vrv.netmgr.vo.OsSetupLogSearchCondition" resultSetType="SCROLL_INSENSITIVE">
+    select count(id) from OsSetupLog
+        <include refid="searchConditionSQL" />
+    </select>
+</mapper>

@@ -1,0 +1,590 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="com.vrv.netmgr.dao.mapper.ErrorMessageMapper">
+
+    <!-- 查询结果映射 -->
+    <resultMap id="searchResultMap" type="com.vrv.netmgr.entity.ErrorMessage">
+        <result property="id" 			column="ErrorID" />
+        <result property="deviceId" 	column="DeviceID" />
+        <result property="errorTime" column="ErrorTime" />
+        <result property="errorType" column="ErrorType" />
+        <result property="subName" column="SubName" />
+        <result property="ipaddress" column="IPAddress" />
+        <result property="ipaddress1" column="IPAddress1" />
+        <result property="macAddress" column="MacAddress" />
+        <result property="deviceName" column="DeviceName" />
+        <result property="identify" column="Identify" />
+        <result property="deptName" column="DeptName" />
+        <result property="officeName" column="OfficeName" />
+        <result property="userName" column="UserName" />
+        <result property="tel" column="Tel" />
+        <result property="errorMsg" column="ErrorMsg" />
+        <result property="startTime" column="StartTime" />
+        <result property="endTime" column="EndTime" />
+        <result property="duration" column="Duration" />
+        <result property="sysUserName" column="SysUserName" />
+        <result property="authUserName" column="AuthUserName" />
+        <result property="pkid" column="Pkid" />
+        <result property="pkiUser" column="PkiUser" />
+        <result property="pkiUnit" column="PkiUnit" />
+        <result property="lookFlag" column="LookFlag" />
+        <result property="routeTable" column="RouteTable" />
+        <result property="onLineTime" column="OnLineTime" />
+        <result property="exField1" column="ExField1" />
+        <result property="exField2" column="ExField2" />
+        <result property="exField3" column="ExField3" />
+        <result property="exField4" column="ExField4" />
+    </resultMap>
+
+    <parameterMap id="searchParameterMap" type="com.vrv.netmgr.vo.ErrorMessageSearchCondition">
+        <parameter property="errorId" />
+        <parameter property="deviceId" />
+        <parameter property="errorTime" />
+        <parameter property="errorType" />
+        <parameter property="subName" />
+        <parameter property="ipaddress" />
+        <parameter property="ipaddress1" />
+        <parameter property="macAddress" />
+        <parameter property="deviceName" />
+        <parameter property="identify" />
+        <parameter property="deptName" />
+        <parameter property="officeName" />
+        <parameter property="userName" />
+        <parameter property="tel" />
+        <parameter property="errorMsg" />
+        <parameter property="startTime" />
+        <parameter property="endTime" />
+        <parameter property="duration" />
+        <parameter property="sysUserName" />
+        <parameter property="authUserName" />
+        <parameter property="pkid" />
+        <parameter property="pkiUser" />
+        <parameter property="pkiUnit" />
+        <parameter property="lookFlag" />
+        <parameter property="routeTable" />
+        <parameter property="onLineTime" />
+        <parameter property="exField1" />
+        <parameter property="exField2" />
+        <parameter property="exField3" />
+        <parameter property="exField4" />
+
+        <parameter property="nullDuration" jdbcType="BOOLEAN" javaType="java.lang.Boolean" mode="IN" />
+
+    </parameterMap>
+
+    <!-- 用于select查询公用抽取的列 -->
+    <sql id="columns">
+        ErrorID,DeviceID,ErrorTime,ErrorType,SubName,IPAddress,IPAddress1,MacAddress,DeviceName,Identify,DeptName,OfficeName,UserName,Tel,ErrorMsg,StartTime,EndTime,Duration,SysUserName,AuthUserName,Pkid,PkiUser,PkiUnit,LookFlag,RouteTable,OnLineTime,ExField1,ExField2,ExField3,ExField4
+    </sql>
+
+    <!-- 新增记录 -->
+    <insert id="insert" parameterType="com.vrv.netmgr.entity.ErrorMessage">
+        INSERT INTO ErrorMessage (
+        ErrorID ,
+        DeviceID ,
+        ErrorTime ,
+        ErrorType ,
+        SubName ,
+        IPAddress ,
+        IPAddress1 ,
+        MacAddress ,
+        DeviceName ,
+        Identify ,
+        DeptName ,
+        OfficeName ,
+        UserName ,
+        Tel ,
+        ErrorMsg ,
+        StartTime ,
+        EndTime ,
+        Duration ,
+        SysUserName ,
+        AuthUserName ,
+        Pkid ,
+        PkiUser ,
+        PkiUnit ,
+        LookFlag ,
+        RouteTable ,
+        OnLineTime ,
+        ExField1 ,
+        ExField2 ,
+        ExField3 ,
+        ExField4
+        ) VALUES (
+        #{errorId} ,
+        #{deviceId} ,
+        #{errorTime} ,
+        #{errorType} ,
+        #{subName} ,
+        #{ipaddress} ,
+        #{ipaddress1} ,
+        #{macAddress} ,
+        #{deviceName} ,
+        #{identify} ,
+        #{deptName} ,
+        #{officeName} ,
+        #{userName} ,
+        #{tel} ,
+        #{errorMsg} ,
+        #{startTime} ,
+        #{endTime} ,
+        #{duration} ,
+        #{sysUserName} ,
+        #{authUserName} ,
+        #{pkid} ,
+        #{pkiUser} ,
+        #{pkiUnit} ,
+        #{lookFlag} ,
+        #{routeTable} ,
+        #{onLineTime} ,
+        #{exField1} ,
+        #{exField2} ,
+        #{exField3} ,
+        #{exField4}
+        )
+    </insert>
+    <!-- 单记录删除 -->
+    <delete id="delete" parameterType="java.lang.String">
+        delete from ErrorMessage where
+        id=#{id}
+    </delete>
+    <!-- 批量记录删除 -->
+    <delete id="deleteByIds" parameterType="java.util.List">
+        delete from ErrorMessage where id in
+        <foreach collection="list" item="ids" open="(" separator="," close=")">#{ids}</foreach>
+    </delete>
+    <!-- 单记录更新 -->
+    <update id="update" parameterType="com.vrv.netmgr.entity.ErrorMessage">
+        UPDATE ErrorMessage
+        <trim prefix="set" suffixOverrides=",">
+            <if test="#{deviceId} != null">
+                DeviceID =#{deviceId},
+            </if>
+            <if test="#{errorTime} != null">
+                ErrorTime =#{errorTime},
+            </if>
+            <if test="#{errorType} != null">
+                ErrorType =#{errorType},
+            </if>
+            <if test="#{subName} != null">
+                SubName =#{subName},
+            </if>
+            <if test="#{ipaddress} != null">
+                IPAddress =#{ipaddress},
+            </if>
+            <if test="#{ipaddress1} != null">
+                IPAddress1 =#{ipaddress1},
+            </if>
+            <if test="#{macAddress} != null">
+                MacAddress =#{macAddress},
+            </if>
+            <if test="#{deviceName} != null">
+                DeviceName =#{deviceName},
+            </if>
+            <if test="#{identify} != null">
+                Identify =#{identify},
+            </if>
+            <if test="#{deptName} != null">
+                DeptName =#{deptName},
+            </if>
+            <if test="#{officeName} != null">
+                OfficeName =#{officeName},
+            </if>
+            <if test="#{userName} != null">
+                UserName =#{userName},
+            </if>
+            <if test="#{tel} != null">
+                Tel =#{tel},
+            </if>
+            <if test="#{errorMsg} != null">
+                ErrorMsg =#{errorMsg},
+            </if>
+            <if test="#{startTime} != null">
+                StartTime =#{startTime},
+            </if>
+            <if test="#{endTime} != null">
+                EndTime =#{endTime},
+            </if>
+            <if test="#{duration} != null">
+                Duration =#{duration},
+            </if>
+            <if test="#{sysUserName} != null">
+                SysUserName =#{sysUserName},
+            </if>
+            <if test="#{authUserName} != null">
+                AuthUserName =#{authUserName},
+            </if>
+            <if test="#{pkid} != null">
+                Pkid =#{pkid},
+            </if>
+            <if test="#{pkiUser} != null">
+                PkiUser =#{pkiUser},
+            </if>
+            <if test="#{pkiUnit} != null">
+                PkiUnit =#{pkiUnit},
+            </if>
+            <if test="#{lookFlag} != null">
+                LookFlag =#{lookFlag},
+            </if>
+            <if test="#{routeTable} != null">
+                RouteTable =#{routeTable},
+            </if>
+            <if test="#{onLineTime} != null">
+                OnLineTime =#{onLineTime},
+            </if>
+            <if test="#{exField1} != null">
+                ExField1 =#{exField1},
+            </if>
+            <if test="#{exField2} != null">
+                ExField2 =#{exField2},
+            </if>
+            <if test="#{exField3} != null">
+                ExField3 =#{exField3},
+            </if>
+            <if test="#{exField4} != null">
+                ExField4 =#{exField4},
+            </if>
+        </trim>
+        where id=#{id}
+    </update>
+    <!-- 查询记录BY ID -->
+    <select id="getById" resultMap="searchResultMap" parameterType="java.lang.String">
+        select
+        <include refid="columns" />
+        from
+        ErrorMessage where id=#{id}
+    </select>
+    <!-- 查询所有记录 -->
+    <select id="getAll" resultMap="searchResultMap" parameterType="java.lang.String">
+        select
+        <include refid="columns" />
+        from
+        ErrorMessage
+    </select>
+
+    <!-- 动态查询条件 -->
+    <sql id="searchConditionSQL">
+        <trim prefix="where" prefixOverrides="AND |OR ">
+            <if test="errorId != null">
+                <![CDATA[ and ErrorID = #{errorId} ]]>
+            </if>
+            <if test="deviceId != null">
+                <![CDATA[ and DeviceID = #{deviceId} ]]>
+            </if>
+            <if test="errorTime != null">
+                and ErrorTime = #{errorTime}
+            </if>
+            <if test="errorType != null">
+                and ErrorType = #{errorType}
+                <if test="errorType == 0 &amp;&amp; nullDuration!=null ">
+                    <choose>
+                        <when test="nullDuration eq 'false' ">and Duration > 0</when>
+                        <when test="nullDuration eq 'true'  ">and Duration = 0</when>
+                    </choose>
+                </if>
+            </if>
+            <if test="subName != null">
+                and SubName = #{subName}
+            </if>
+            <if test="ipaddress != null">
+                <!-- [CDATA[ AND IPAddress LIKE '%'||#{ipaddress}||'%'-->
+                AND IPAddress LIKE '%${ipaddress}%'
+            </if>
+            <if test="ipaddress1 != null">
+                and IPAddress1 = #{ipaddress1}
+            </if>
+            <if test="macAddress != null">
+                and MacAddress = #{macAddress}
+            </if>
+            <if test="deviceName != null">
+                and DeviceName = #{deviceName}
+            </if>
+            <if test="identify != null">
+                and Identify = #{identify}
+            </if>
+            <if test="deptName != null">
+                and DeptName = #{deptName}
+            </if>
+            <if test="officeName != null">
+                and OfficeName = #{officeName}
+            </if>
+            <if test="userName != null">
+                and UserName = #{userName}
+            </if>
+            <if test="tel != null">
+                and Tel = #{tel}
+            </if>
+            <if test="startTime != null">
+                and StartTime = #{startTime}
+            </if>
+            <if test="endTime != null">
+                and EndTime = #{endTime}
+            </if>
+
+            <!-- and ErrorMsg like CONCAT('%','${errorMsg}','%' ) and ErrorMsg like "%"||#{errorMsg}||"%" and ErrorMsg like '%${errorMsg}%' -->
+            <if test="errorMsg != null">
+                and ErrorMsg like '%${errorMsg}%'
+            </if>
+
+            <if test="sysUserName != null">
+                and SysUserName = #{sysUserName}
+            </if>
+            <if test="authUserName != null">
+                and AuthUserName = #{authUserName}
+            </if>
+            <if test="pkid != null">
+                and Pkid = #{pkid}
+            </if>
+            <if test="pkiUser != null">
+                and PkiUser = #{pkiUser}
+            </if>
+            <if test="pkiUnit != null">
+                and PkiUnit = #{pkiUnit}
+            </if>
+
+            <!-- lookFlag 1表示“已读”；isnull表示“未读” -->
+            <if test="lookFlag != null">
+                <choose>
+                    <when test="lookFlag == 'isnull' "> and LookFlag is null </when>
+                    <when test="lookFlag == 1 ">        and LookFlag = 1   </when>
+                </choose>
+            </if>
+
+            <!-- today : "true|false" -->
+            <if test="today != null">
+                <choose>
+                    <when test="today == 'true'  "> and CONVERT(varchar(100), StartTime, 23) = CONVERT(varchar(100), getdate(), 23) </when>
+                    <when test="today == 'false' "> and CONVERT(varchar(100), StartTime, 23) &lt; CONVERT(varchar(100), getdate(), 23) </when>
+                </choose>
+            </if>
+
+            <if test="routeTable != null">
+                and RouteTable = #{routeTable}
+            </if>
+            <if test="onLineTime != null">
+                and OnLineTime = #{onLineTime}
+            </if>
+            <if test="exField1 != null">
+                and ExField1 = #{exField1}
+            </if>
+            <if test="exField2 != null">
+                and ExField2 = #{exField2}
+            </if>
+            <if test="exField3 != null">
+                and ExField3 = #{exField3}
+            </if>
+            <if test="exField4 != null">
+                and ExField4 = #{exField4}
+            </if>
+        </trim>
+    </sql>
+    <select id="search" resultMap="searchResultMap" useCache="true" parameterType="com.vrv.netmgr.vo.ErrorMessageSearchCondition">
+        select
+        <include refid="columns" />
+        from ErrorMessage
+        <include refid="searchConditionSQL" />
+    </select>
+
+    <select id="selectPage" resultMap="searchResultMap" parameterType="com.vrv.netmgr.vo.ErrorMessageSearchCondition" resultSetType="SCROLL_SENSITIVE">
+        select
+        <include refid="columns" />
+        from ErrorMessage
+        <include refid="searchConditionSQL" />
+        order by ErrorID ASC
+    </select>
+    <select id="selectPageCount" resultType="long" parameterType="com.vrv.netmgr.vo.ErrorMessageSearchCondition" resultSetType="SCROLL_SENSITIVE">
+        select count(errorId) from ErrorMessage
+        <include refid="searchConditionSQL" />
+    </select>
+
+    <!-- DeviceID ,DeptName,UserName,Tel,OfficeName SELECT <include refid="com.vrv.netmgr.dao.mapper.DeviceInfoMapper.columns" /> FROM Device d WHERE DeviceID in (
+        SELECT e.DeviceID FROM ErrorMessage e WHERE e.ErrorType = 0 GROUP BY e.DeviceID ) ORDER BY d.IPAddres -->
+    <select id="statisticVisitNetworkPageByIp" resultType="com.vrv.netmgr.vo.NetworkVisitVO" useCache="true" parameterType="com.vrv.netmgr.vo.ErrorMessageSearchCondition" resultSetType="SCROLL_INSENSITIVE">
+
+        SELECT
+            c.ClassName className,
+            d.DeptName deptName,
+            d.OfficeName officeName,
+            d.UserName userName,
+            d.Tel tel,
+            d.IPAddres ipAddres,
+            v.StartTime startTime,
+            v.EndTime endTime,
+            v.totalCount totalCount,
+            v.Duration duration,
+            v.subType subType
+
+        FROM Device d RIGHT JOIN (
+            SELECT e.DeviceID,MIN(StartTime) as StartTime,MAX(EndTime) as EndTime,COUNT(e.DeviceID) as totalCount,SUM(e.Duration) as Duration,(
+            CASE WHEN CHARINDEX('同时',SUBSTRING(e.errorMsg,0,8))>0 THEN '在线上网(同时连接内外网)'
+            WHEN CHARINDEX('断开',SUBSTRING(e.errorMsg,0,8))>0 THEN '离线上网(断开内网上外网)'
+            ELSE '其它'
+            END
+        ) as subType
+        FROM ErrorMessage e WHERE e.ErrorType = 0 GROUP BY e.DeviceID,SUBSTRING(e.errorMsg,0,8)
+        ) v ON d.DeviceID = v.DeviceID LEFT JOIN Class c ON d.ClassID = c.ClassID
+        ORDER BY d.IPAddres
+
+    </select>
+    <select id="statisticVisitNetworkPageByIpCount" resultType="long" parameterType="com.vrv.netmgr.vo.ErrorMessageSearchCondition" resultSetType="SCROLL_INSENSITIVE">
+        select count(*) from (
+
+        SELECT c.ClassName,d.DeptName,d.OfficeName,d.UserName,d.Tel,d.IPAddres ,v.StartTime,v.EndTime,v.totalCount,v.Duration,v.subType
+        FROM Device d RIGHT JOIN (
+        SELECT e.DeviceID,MIN(StartTime) as StartTime,MAX(EndTime) as EndTime,COUNT(e.DeviceID) as totalCount,SUM(e.Duration) as Duration,(
+        CASE WHEN CHARINDEX('同时',SUBSTRING(e.errorMsg,0,8))>0 THEN '在线上网(同时连接内外网)'
+        WHEN CHARINDEX('断开',SUBSTRING(e.errorMsg,0,8))>0 THEN '离线上网(断开内网上外网)'
+        ELSE '其它'
+        END
+        ) as subType
+        FROM ErrorMessage e WHERE e.ErrorType = 0 GROUP BY e.DeviceID,SUBSTRING(e.errorMsg,0,8)
+        ) v ON d.DeviceID = v.DeviceID LEFT JOIN Class c ON d.ClassID = c.ClassID
+
+        ) vx
+    </select>
+
+    <!-- DeviceID ,Duration,MacAddress -->
+    <select id="statisticVisitNetworkPageByArea" resultMap="searchResultMap" useCache="true" parameterType="com.vrv.netmgr.vo.ErrorMessageSearchCondition" resultSetType="SCROLL_INSENSITIVE">
+        Select
+        <include refid="columns" />
+        From Device
+        Where (DeviceID IN (
+        SELECT DISTINCT DeviceID FROM Device
+        WHERE (ClassID IN (
+        SELECT ClassID FROM Class WHERE ClassName LIKE '系统区域'))))
+    </select>
+    <select id="statisticVisitNetworkPageByAreaCount" resultType="long" parameterType="com.vrv.netmgr.vo.ErrorMessageSearchCondition" resultSetType="SCROLL_INSENSITIVE">
+        select count(*) from (
+        Select ClassID
+        From Class
+        Where ClassName like '系统区域'
+        )v
+        <include refid="searchConditionSQL" />
+    </select>
+
+    <!-- DeviceID ,DeptName,UserName,Tel,OfficeName -->
+    <select id="statisticVisitNetworkPageByYear" resultMap="searchResultMap" useCache="true" parameterType="com.vrv.netmgr.vo.ErrorMessageSearchCondition" resultSetType="SCROLL_INSENSITIVE">
+
+        Select
+        <include refid="columns" />
+        From Device
+        Where (DeviceID IN (
+        SELECT DISTINCT DeviceID FROM Device
+        WHERE (DeviceID IN (
+        SELECT DeviceID FROM ErrorMessage WHERE ErrorTime LIKE '([0-9]{4})'))))
+
+    </select>
+    <select id="statisticVisitNetworkPageByYearCount" resultType="long" parameterType="com.vrv.netmgr.vo.ErrorMessageSearchCondition" resultSetType="SCROLL_INSENSITIVE">
+        select count(*) from (
+        Select ErrorTime
+        From ErrorMessage
+        Where ErrorTime LIKE '([0-9]{4})'
+        )v
+        <include refid="searchConditionSQL" />
+    </select>
+
+    <!-- DeviceID ,DeptName,UserName,Tel,OfficeName -->
+    <select id="statisticVisitNetworkPageByMonth" resultMap="searchResultMap" useCache="true" parameterType="com.vrv.netmgr.vo.ErrorMessageSearchCondition" resultSetType="SCROLL_INSENSITIVE">
+
+        Select
+        <include refid="columns" />
+        From Device
+        Where (DeviceID IN (
+        SELECT DISTINCT DeviceID FROM Device
+        WHERE (DeviceID IN (
+        SELECT DeviceID FROM ErrorMessage WHERE ErrorTime LIKE
+        '([0-9]{4})-([0-9]{2})'))))
+
+    </select>
+    <select id="statisticVisitNetworkPageByMonthCount" resultType="long" parameterType="com.vrv.netmgr.vo.ErrorMessageSearchCondition" resultSetType="SCROLL_INSENSITIVE">
+        select count(*) from (
+        Select ErrorTime
+        From ErrorMessage
+        Where ErrorTime LIKE '([0-9]{4})-([0-9]{2})'
+        )v
+        <include refid="searchConditionSQL" />
+    </select>
+
+    <select id="statisticErrorMsgByRegion" resultType="long" parameterType="com.vrv.netmgr.vo.WarningInfoStatisticsSearchCondition">
+        SELECT Num FROM(
+            SELECT Count(*) As Num
+            FROM ErrorMessage INNER JOIN Device ON ErrorMessage.DeviceID=Device.DeviceID
+            where ErrorMessage.ErrorType=0
+
+            UNION ALL
+
+            SELECT Count(*) As Num
+            FROM ErrorMessage INNER JOIN Device ON ErrorMessage.DeviceID=Device.DeviceID
+            where ErrorMessage.ErrorType=1
+
+            UNION ALL
+
+            SELECT Count(*) As Num
+            FROM ErrorMessage INNER JOIN Device ON ErrorMessage.DeviceID=Device.DeviceID
+            where ErrorMessage.ErrorType=2
+
+            UNION ALL
+
+            SELECT Count(*) As Num
+            FROM ErrorMessage INNER JOIN Device ON ErrorMessage.DeviceID=Device.DeviceID
+            where ErrorMessage.ErrorType=5
+
+            UNION ALL
+
+            SELECT Count(*) As Num
+            FROM ErrorMessage INNER JOIN Device ON ErrorMessage.DeviceID=Device.DeviceID
+            where ErrorMessage.ErrorType=8
+
+            UNION ALL
+
+            SELECT Count(*) As Num
+            FROM ErrorMessage INNER JOIN Device ON ErrorMessage.DeviceID=Device.DeviceID
+            where ErrorMsg like '%阻断%'
+        ) v
+    </select>
+
+    <!-- 查询为读的报警数据 -->
+    <select id="searchUnreadErrorInfoCount" resultType="long" parameterType="com.vrv.netmgr.vo.ErrorMessageSearchCondition" >
+        SELECT COUNT(*) FROM ErrorMessage
+        WHERE LookFlag IS NULL
+        <if test="errorType != null">
+            AND ErrorType=#{errorType}
+        </if>
+        <if test="errorMsg != null">
+            AND ErrorMsg like '%${errorMsg}%'
+        </if>
+    </select>
+
+    <!-- 过去一周的报警统计 -->
+    <select id="searchPastWeekErrorInfo" resultType="java.util.Map" >
+        SELECT CONVERT(varchar(100),StartTime, 23) as ErrorTime,count(CONVERT(varchar(100),StartTime, 23)) as Num
+        FROM ErrorMessage
+        GROUP BY CONVERT(varchar(100),StartTime, 23)
+        HAVING CONVERT(varchar(100),StartTime, 23) IN
+
+        <foreach item="item" index="index" collection="array" open="(" separator="," close=")"> #{item} </foreach>
+
+        ORDER BY CONVERT(varchar(100),StartTime, 23) DESC
+    </select>
+
+    <select id="searchWarningInfoByDevice" resultType="java.util.Map" resultSetType="SCROLL_INSENSITIVE">
+
+        SELECT totalCount,eventName,type FROM (
+            SELECT COUNT(ExtNum) totalCount,(SELECT AuditTypeName FROM AuditTypeList WHERE AuditTypeNum = ExtNum ) as eventName,0 as type
+            FROM PMoveableDiskEvent
+            WHERE IPAddress = #{ipAddress} AND ClassID = #{classId} AND OnlyID = #{deviceId}
+            GROUP BY ExtNum
+
+            UNION ALL
+
+            SELECT COUNT(e.ErrorType) totalCount,(SELECT ErrorName FROM ErrorType WHERE ErrorType = e.ErrorType ) as eventName,1 as type
+            FROM ErrorMessage e
+            WHERE e.IPAddress = #{ipAddress} AND e.DeviceID = #{deviceId}
+            GROUP BY e.ErrorType
+        )v
+
+    </select>
+
+</mapper>

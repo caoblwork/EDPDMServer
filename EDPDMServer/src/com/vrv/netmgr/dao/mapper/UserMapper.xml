@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="com.vrv.netmgr.dao.mapper.UserMapper">
+
+    <!-- 查询结果映射 -->
+    <resultMap id="searchResultMap" type="com.vrv.netmgr.entity.User">
+        <result property="id" column="UserID" />
+        <result property="parentId" column="ParentID" />
+        <result property="name" column="UserName" />
+        <result property="passWord" column="PassWord" />
+        <result property="type" column="Type" />
+        <result property="menuType" column="Menu_Type" />
+        <result property="visitAllowIPS" column="VisitAllowIPS" />
+        <result property="usbKey" column="UsbKey" />
+        <result property="description" column="Description" />
+        <result property="usbCount" column="UsbCount" />
+        <result property="usbCurcnt" column="UsbCurcnt" />
+
+        <result property="createDate" column="CreateTime" />
+        <result property="createBy" column="CreateUser" />
+
+    </resultMap>
+
+    <!-- 用于select查询公用抽取的列 -->
+    <sql id="columns">
+        UserID,ParentID,UserName,PassWord,Type,Menu_Type,VisitAllowIPS,UsbKey,Description,UsbCount,UsbCurcnt,CreateTime,CreateUser
+    </sql>
+
+    <!-- 新增记录 -->
+    <insert id="insert" parameterType="com.vrv.netmgr.entity.User">
+        INSERT INTO Users (
+
+        UserID,
+        ParentID,
+        UserName,
+        PassWord,
+        Type,
+        Menu_Type,
+        VisitAllowIPS,
+        UsbKey,
+        Description,
+        UsbCount,
+        UsbCurcnt,
+        CreateTime,
+        CreateUser
+
+        ) VALUES (
+
+        #{id} ,
+        #{parentId} ,
+        #{name} ,
+        #{passWord} ,
+        #{type} ,
+        #{menuType} ,
+        #{visitAllowIPS} ,
+        #{usbKey} ,
+        #{description} ,
+        #{usbCount} ,
+        #{usbCurcnt} ,
+        #{createDate} ,
+        #{createBy}
+
+        )
+    </insert>
+    <!-- 单记录更新 -->
+    <update id="update" parameterType="com.vrv.netmgr.entity.User">
+        UPDATE Users
+        <trim prefix="set" suffixOverrides=",">
+            <if test="#{parentId} != null">
+                ParentID =#{parentId},
+            </if>
+            <if test="#{name} != null">
+                UserName =#{name},
+            </if>
+            <if test="#{passWord} != null">
+                PassWord =#{passWord},
+            </if>
+            <if test="#{type} != null">
+                Type =#{type},
+            </if>
+            <if test="#{menuType} != null">
+                Menu_Type =#{menuType},
+            </if>
+            <if test="#{visitAllowIPS} != null">
+                VisitAllowIPS =#{visitAllowIPS},
+            </if>
+            <if test="#{usbKey} != null">
+                UsbKey =#{usbKey},
+            </if>
+            <if test="#{description} != null">
+                Description =#{description},
+            </if>
+            <if test="#{usbCount} != null">
+                UsbCount =#{usbCount},
+            </if>
+            <if test="#{usbCurcnt} != null">
+                UsbCurcnt =#{usbCurcnt},
+            </if>
+            <if test="#{createDate} != null">
+                CreateTime =#{createDate},
+            </if>
+            <if test="#{createBy} != null">
+                CreateUser =#{createBy},
+            </if>
+
+        </trim>
+        where UserID=#{id}
+    </update>
+
+    <!-- 查询记录BY ID -->
+    <select id="getById" resultMap="searchResultMap" parameterType="java.lang.String">
+        select
+        <include refid="columns" />
+        from
+        Users where UserID=#{id}
+    </select>
+
+    <!-- 查询所有记录 -->
+    <select id="getAll" resultMap="searchResultMap" parameterType="java.lang.String">
+        select
+        <include refid="columns" />
+        from
+        Users
+    </select>
+
+    <!-- 动态查询条件 -->
+    <sql id="searchConditionSQL">
+        <trim prefix="where" prefixOverrides="AND |OR ">
+
+            <if test="id != null">
+                and UserID =#{id}
+            </if>
+            <if test="parentId != null">
+                and ParentID =#{parentId}
+            </if>
+            <if test="passWord != null">
+                and PassWord = #{passWord}
+            </if>
+            <if test="type != null">
+                and Type =#{type}
+            </if>
+            <if test="menuType != null">
+                and Menu_Type =#{menuType}
+            </if>
+            <if test="visitAllowIPS != null">
+                and VisitAllowIPS =#{visitAllowIPS}
+            </if>
+            <if test="usbKey != null">
+                and UsbKey =#{usbKey}
+            </if>
+            <if test="description != null">
+                and Description =#{description}
+            </if>
+            <if test="createDate != null">
+                and CreateTime =#{createDate}
+            </if>
+            <if test="createBy != null">
+                and CreateUser =#{createBy}
+            </if>
+
+        </trim>
+    </sql>
+
+    <select id="search" resultMap="searchResultMap" useCache="true" parameterType="com.vrv.netmgr.vo.UserSearchCondition">
+        select
+        <include refid="columns" />
+        from Users
+        <include refid="searchConditionSQL" />
+    </select>
+
+    <select id="selectPage" resultMap="searchResultMap" useCache="true" parameterType="com.vrv.netmgr.vo.UserSearchCondition" resultSetType="SCROLL_INSENSITIVE">
+        select
+        <include refid="columns" />
+        from Users
+        <include refid="searchConditionSQL" />
+    </select>
+
+    <select id="selectPageCount" resultType="long" parameterType="com.vrv.netmgr.vo.UserSearchCondition" resultSetType="SCROLL_INSENSITIVE">
+	select count(UserID) from Users
+        <include refid="searchConditionSQL" />
+    </select>
+
+    <select id="searchUserByLoginId" resultMap="searchResultMap" parameterType="java.lang.String">
+        select
+        <include refid="columns" />
+        FROM Users WHERE UserName = #{name}
+    </select>
+
+</mapper>

@@ -1,0 +1,314 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="com.vrv.netmgr.dao.mapper.PolicyMapper">
+
+    <!-- 查询结果映射 -->
+    <resultMap id="searchResultMap" type="com.vrv.netmgr.entity.Policy">
+        <result property="policyId" column="Policy_ID" />
+        <result property="fpolicyId" column="FPolicy_ID" />
+        <result property="policyName" column="Policy_Name" />
+        <result property="policyFunc" column="Policy_Func" />
+        <result property="policyFuncNum" column="Policy_FuncNum" />
+        <result property="policyContent" column="Policy_Content" />
+        <result property="policyObject" column="Policy_Object" />
+        <result property="policyCreate" column="Policy_Create" />
+        <result property="policyCreateUser" column="Policy_CreateUser" />
+        <result property="policyModify" column="Policy_Modify" />
+        <result property="policyModifyContent" column="Policy_Modify_Content" />
+        <result property="policyModifyUser" column="Policy_ModifyUser" />
+        <result property="ostype" column="OSType" />
+        <result property="policyStart" column="Policy_Start" />
+        <result property="remark" column="Remark" />
+        <result property="policyCrc" column="Policy_CRC" />
+        <result property="policyCrccontent" column="Policy_CRC_Content" />
+        <result property="policyCrcobject" column="Policy_CRC_Object" />
+        <result property="policyChanged" column="Policy_Changed" />
+        <result property="reserved1" column="Reserved1" />
+        <result property="reserved2" column="Reserved2" />
+        <result property="reserved3" column="Reserved3" />
+        <result property="reserved4" column="Reserved4" />
+        <result property="reserved5" column="Reserved5" />
+        <result property="reserved6" column="Reserved6" />
+        <result property="reserved7" column="Reserved7" />
+        <result property="policyExecuteLevel" column="PolicyExecuteLevel" />
+    </resultMap>
+    <!-- 用于select查询公用抽取的列 -->
+    <sql id="columns">
+        Policy_ID,FPolicy_ID,Policy_Name,Policy_Func,Policy_FuncNum,Policy_Content,Policy_Object,Policy_Create,Policy_CreateUser,Policy_Modify,Policy_Modify_Content,Policy_ModifyUser,OSType,Policy_Start,Remark,Policy_CRC,Policy_CRC_Content,Policy_CRC_Object,Policy_Changed,Reserved1,Reserved2,Reserved3,Reserved4,Reserved5,Reserved6,Reserved7,PolicyExecuteLevel
+    </sql>
+    <!-- 新增记录 -->
+    <insert id="insert" parameterType="com.vrv.netmgr.entity.Policy">
+        INSERT INTO Policy_List (
+        Policy_ID ,
+        FPolicy_ID ,
+        Policy_Name ,
+        Policy_Func ,
+        Policy_FuncNum ,
+        Policy_Content ,
+        Policy_Object ,
+        Policy_Create ,
+        Policy_CreateUser ,
+        Policy_Modify ,
+        Policy_Modify_Content ,
+        Policy_ModifyUser ,
+        OSType ,
+        Policy_Start ,
+        Remark ,
+        Policy_CRC ,
+        Policy_CRC_Content ,
+        Policy_CRC_Object ,
+        Policy_Changed ,
+        Reserved1 ,
+        Reserved2 ,
+        Reserved3 ,
+        Reserved4 ,
+        Reserved5 ,
+        Reserved6 ,
+        Reserved7 ,
+        PolicyExecuteLevel
+        ) VALUES (
+        #{policyId} ,
+        #{fpolicyId} ,
+        #{policyName} ,
+        #{policyFunc} ,
+        #{policyFuncNum} ,
+        #{policyContent} ,
+        #{policyObject} ,
+        #{policyCreate} ,
+        #{policyCreateUser} ,
+        #{policyModify} ,
+        #{policyModifyContent} ,
+        #{policyModifyUser} ,
+        #{ostype} ,
+        #{policyStart} ,
+        #{remark} ,
+        #{policyCrc} ,
+        #{policyCrccontent} ,
+        #{policyCrcobject} ,
+        #{policyChanged} ,
+        #{reserved1} ,
+        #{reserved2} ,
+        #{reserved3} ,
+        #{reserved4} ,
+        #{reserved5} ,
+        #{reserved6} ,
+        #{reserved7} ,
+        #{policyExecuteLevel}
+        )
+    </insert>
+    <!-- 单记录删除 -->
+    <delete id="delete" parameterType="java.lang.String">
+        delete from Policy_List where id=#{id}
+    </delete>
+    <!-- 批量记录删除 -->
+    <delete id="deleteByIds" parameterType="java.util.List">
+        delete from Policy_List where id in
+        <foreach collection="list" item="ids" open="(" separator="," close=")">#{ids}</foreach>
+    </delete>
+    <!-- 单记录更新 -->
+    <update id="update" parameterType="com.vrv.netmgr.entity.Policy">
+        UPDATE Policy_List
+        <trim prefix="set" suffixOverrides=",">
+            <if test="#{fpolicyId} != null">
+                FPolicy_ID =#{fpolicyId},
+            </if>
+            <if test="#{policyName} != null">
+                Policy_Name =#{policyName}',
+            </if>
+            <if test="#{policyFunc} != null">
+                Policy_Func =#{policyFunc},
+            </if>
+            <if test="#{policyFuncNum} != null">
+                Policy_FuncNum =#{policyFuncNum},
+            </if>
+            <if test="#{policyContent} != null">
+                Policy_Content =#{policyContent},
+            </if>
+            <if test="#{policyObject} != null">
+                Policy_Object =#{policyObject},
+            </if>
+            <if test="#{policyCreate} != null">
+                Policy_Create =#{policyCreate},
+            </if>
+            <if test="#{policyCreateUser} != null">
+                Policy_CreateUser =#{policyCreateUser},
+            </if>
+            <if test="#{policyModify} != null">
+                Policy_Modify =#{policyModify},
+            </if>
+            <if test="#{policyModifyContent} != null">
+                Policy_Modify_Content =#{policyModifyContent},
+            </if>
+            <if test="#{policyModifyUser} != null">
+                Policy_ModifyUser =#{policyModifyUser},
+            </if>
+            <if test="#{ostype} != null">
+                OSType =#{ostype},
+            </if>
+            <if test="#{policyStart} != null">
+                Policy_Start =#{policyStart},
+            </if>
+            <if test="#{remark} != null">
+                Remark =#{remark},
+            </if>
+            <if test="#{policyCrc} != null">
+                Policy_CRC =#{policyCrc},
+            </if>
+            <if test="#{policyCrccontent} != null">
+                Policy_CRC_Content =#{policyCrccontent},
+            </if>
+            <if test="#{policyCrcobject} != null">
+                Policy_CRC_Object =#{policyCrcobject},
+            </if>
+            <if test="#{policyChanged} != null">
+                Policy_Changed =#{policyChanged},
+            </if>
+            <if test="#{reserved1} != null">
+                Reserved1 =#{reserved1},
+            </if>
+            <if test="#{reserved2} != null">
+                Reserved2 =#{reserved2},
+            </if>
+            <if test="#{reserved3} != null">
+                Reserved3 =#{reserved3},
+            </if>
+            <if test="#{reserved4} != null">
+                Reserved4 =#{reserved4},
+            </if>
+            <if test="#{reserved5} != null">
+                Reserved5 =#{reserved5},
+            </if>
+            <if test="#{reserved6} != null">
+                Reserved6 =#{reserved6},
+            </if>
+            <if test="#{reserved7} != null">
+                Reserved7 =#{reserved7},
+            </if>
+            <if test="#{policyExecuteLevel} != null">
+                PolicyExecuteLevel =#{policyExecuteLevel},
+            </if>
+        </trim>
+        where id=#{id}
+    </update>
+    <!-- 查询记录BY ID -->
+    <select id="getById" resultMap="searchResultMap" parameterType="java.lang.String">
+        select
+        <include refid="columns" />
+        from
+        Policy_List where Policy_ID=#{id}
+    </select>
+    <!-- 查询所有记录 -->
+    <select id="getAll" resultMap="searchResultMap" parameterType="java.lang.String">
+        select
+        <include refid="columns" />
+        from
+        Policy_List
+    </select>
+
+    <!-- 动态查询条件 -->
+    <sql id="searchConditionSQL">
+        <trim prefix="where" prefixOverrides="AND |OR ">
+            <if test="policyId != null">
+                and Policy_ID = #{policyId}
+            </if>
+            <if test="fpolicyId != null">
+                and FPolicy_ID = #{fpolicyId}
+            </if>
+            <if test="policyName != null">
+                and Policy_Name like '%${policyName}%'
+            </if>
+            <if test="policyFunc != null">
+                and Policy_Func = #{policyFunc}
+            </if>
+            <if test="policyFuncNum != null">
+                and Policy_FuncNum = #{policyFuncNum}
+            </if>
+            <if test="policyContent != null">
+                and Policy_Content = #{policyContent}
+            </if>
+            <if test="policyObject != null">
+                and Policy_Object = #{policyObject}
+            </if>
+            <if test="policyCreate != null">
+                and Policy_Create = #{policyCreate}
+            </if>
+            <if test="policyCreateUser != null">
+                and Policy_CreateUser = #{policyCreateUser}
+            </if>
+            <if test="policyModify != null">
+                and Policy_Modify = #{policyModify}
+            </if>
+            <if test="policyModifyContent != null">
+                and Policy_Modify_Content = #{policyModifyContent}
+            </if>
+            <if test="policyModifyUser != null">
+                and Policy_ModifyUser = #{policyModifyUser}
+            </if>
+            <if test="ostype != null">
+                and OSType = #{ostype}
+            </if>
+            <if test="policyStart != null">
+                and Policy_Start = #{policyStart}
+            </if>
+            <if test="remark != null">
+                and Remark = #{remark}
+            </if>
+            <if test="policyCrc != null">
+                and Policy_CRC = #{policyCrc}
+            </if>
+            <if test="policyCrccontent != null">
+                and Policy_CRC_Content = #{policyCrccontent}
+            </if>
+            <if test="policyCrcobject != null">
+                and Policy_CRC_Object = #{policyCrcobject}
+            </if>
+            <if test="policyChanged != null">
+                and Policy_Changed = #{policyChanged}
+            </if>
+            <if test="reserved1 != null">
+                and Reserved1 = #{reserved1}
+            </if>
+            <if test="reserved2 != null">
+                and Reserved2 = #{reserved2}
+            </if>
+            <if test="reserved3 != null">
+                and Reserved3 = #{reserved3}
+            </if>
+            <if test="reserved4 != null">
+                and Reserved4 = #{reserved4}
+            </if>
+            <if test="reserved5 != null">
+                and Reserved5 = #{reserved5}
+            </if>
+            <if test="reserved6 != null">
+                and Reserved6 = #{reserved6}
+            </if>
+            <if test="reserved7 != null">
+                and Reserved7 = #{reserved7}
+            </if>
+            <if test="policyExecuteLevel != null">
+                and PolicyExecuteLevel = #{policyExecuteLevel}
+            </if>
+        </trim>
+    </sql>
+
+    <select id="search" resultMap="searchResultMap" useCache="true" parameterType="com.vrv.netmgr.vo.PolicySearchCondition">
+        select
+        <include refid="columns" />
+        from Policy_List
+        <include refid="searchConditionSQL" />
+    </select>
+
+    <select id="selectPage" resultMap="searchResultMap" useCache="true" parameterType="com.vrv.netmgr.vo.PolicySearchCondition" resultSetType="SCROLL_INSENSITIVE">
+        select
+        <include refid="columns" />
+        from Policy_List
+        <include refid="searchConditionSQL" />
+    </select>
+    <select id="selectPageCount" resultType="long" parameterType="com.vrv.netmgr.vo.PolicySearchCondition" resultSetType="SCROLL_INSENSITIVE">
+    select count(Policy_ID) from Policy_List
+        <include refid="searchConditionSQL" />
+    </select>
+</mapper>

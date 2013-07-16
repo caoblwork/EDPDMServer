@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+    xmlns:context="http://www.springframework.org/schema/context" xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:tx="http://www.springframework.org/schema/tx"
+    xmlns:aop="http://www.springframework.org/schema/aop"
+    xsi:schemaLocation="http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
+        http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+        http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd"
+    default-lazy-init="false">
+
+    <mvc:annotation-driven />
+
+    <!-- 扫描web包 -->
+    <context:component-scan base-package="com.vrv.netmgr.dao" />
+    <context:component-scan base-package="com.vrv.netmgr.service" />
+    <context:component-scan base-package="com.vrv.netmgr.remote" />
+
+    <bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
+        <property name="basenames">
+            <list>
+                <value>message.messages</value>
+            </list>
+        </property>
+    </bean>
+
+    <!-- 以下 validator ConversionService 在使用 mvc:annotation-driven 会自动注册 -->
+    <bean id="validator" class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean">
+        <property name="providerClass" value="org.hibernate.validator.HibernateValidator" />
+        <!-- 如果不加默认到 使用classpath下的 ValidationMessages.properties -->
+        <property name="validationMessageSource" ref="messageSource" />
+    </bean>
+
+    <!-- 指定本地的property配置相关参数 -->
+    <bean name="localDatasourceConfig" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="locations">
+            <list>
+                <value>classpath:datasource.properties</value>
+            </list>
+        </property>
+    </bean>
+
+    <!-- 数据源 -->
+    <bean id="mainDataSource" class="com.alibaba.druid.pool.DruidDataSource" init-method="init" destroy-method="close">
+        <property name="url">
+            <value>${dataSource.url}</value>
+        </property>
+        <property name="username">
+            <value>${dataSource.username}</value>
+        </property>
+        <property name="password">
+            <value>${dataSource.password}</value>
+        </property>
+        <property name="filters" value="stat" />
+        <property name="maxActive" value="20" />
+        <property name="initialSize" value="1" />
+        <property name="maxWait" value="60000" />
+        <property name="minIdle" value="1" />
+        <property name="timeBetweenEvictionRunsMillis" value="3000" />
+        <property name="minEvictableIdleTimeMillis" value="300000" />
+        <property name="validationQuery" value="SELECT 'x'" />
+        <property name="testWhileIdle" value="true" />
+        <property name="testOnBorrow" value="false" />
+        <property name="testOnReturn" value="false" />
+        <property name="poolPreparedStatements" value="true" />
+        <property name="maxPoolPreparedStatementPerConnectionSize" value="20" />
+    </bean>
+
+    <!-- sqlSessionFactory -->
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="configLocation" value="classpath:mybatis/configuration.xml" />
+        <property name="mapperLocations" value="classpath*:/com/**/mapper/**/*Mapper.xml" />
+        <property name="dataSource" ref="mainDataSource" />
+        <property name="plugins">
+            <list>
+                <ref local="auditInterceptor" />
+                <ref local="executeInterceptor" />
+                <ref local="offsetLimitInterceptor" />
+                <!-- <ref local="testInterceptor" /> -->
+            </list>
+        </property>
+    </bean>
+
+    <!-- 审计信息拦截器 -->
+    <bean id="auditInterceptor" class="com.vrv.framework.dao.mybatis.plugin.AuditInterceptor"></bean>
+    <bean id="decryptionInterceptor" class="com.vrv.framework.dao.mybatis.plugin.DecryptionInterceptor"></bean>
+    <bean id="testInterceptor" class="com.vrv.framework.dao.mybatis.plugin.TestInterceptor"></bean>
+    <bean id="executeInterceptor" class="com.vrv.framework.dao.mybatis.plugin.ExecutorInterceptor"></bean>
+
+    <!-- 分页拦截器 -->
+    <bean id="offsetLimitInterceptor" class="com.vrv.framework.dao.mybatis.plugin.OffsetLimitInterceptor">
+        <property name="dialectClass" value="com.vrv.framework.dao.mybatis.dialect.SQLServer2005Dialect"></property>
+        <!-- <property name="dialectClass" value="com.vrv.framework.dao.mybatis.dialect.SQLServerDialect"></property> <property name="dialectClass" value="com.vrv.framework.dao.mybatis.dialect.MySQLDialect"></property> -->
+    </bean>
+
+    <bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">
+        <constructor-arg index="0" ref="sqlSessionFactory" />
+    </bean>
+
+    <bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+        <constructor-arg type="javax.sql.DataSource" ref="mainDataSource" />
+    </bean>
+
+    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="mainDataSource" />
+    </bean>
+
+    <tx:advice id="transactionInterceptor" transaction-manager="transactionManager">
+        <tx:attributes>
+            <tx:method name="get*" read-only="true" />
+            <tx:method name="find*" read-only="true" />
+            <tx:method name="search*" read-only="true" />
+            <tx:method name="load*" read-only="true" />
+            <tx:method name="do*" isolation="READ_COMMITTED" propagation="REQUIRED" timeout="100" rollback-for="java.lang.Exception" />
+            <tx:method name="*" isolation="READ_COMMITTED" propagation="REQUIRED" timeout="100" rollback-for="java.lang.Exception" />
+        </tx:attributes>
+    </tx:advice>
+
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="basePackage" value="com.vrv.netmgr.dao.mapper" />
+    </bean>
+
+    <!-- 用于持有ApplicationContext,可以使用SpringContextHolder.getBean('xxxx')的静态方法得到spring bean对象 -->
+    <bean class="com.vrv.framework.common.utils.SpringContextHolder" lazy-init="false" />
+
+</beans>

@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="com.vrv.netmgr.dao.mapper.HardwareChangeMapper">
+
+    <!-- 查询结果映射 -->
+    <resultMap id="searchResultMap" type="com.vrv.netmgr.entity.HardwareChange">
+        <result property="id" column="ID" />
+        <result property="deviceId" column="DeviceID" />
+        <result property="deviceName" column="DeviceName" />
+        <result property="old1" column="OLD1" />
+        <result property="new1" column="NEW1" />
+        <result property="changeTime" column="ChangeTime" />
+        <result property="reserved1" column="Reserved1" />
+        <result property="reserved2" column="Reserved2" />
+        <result property="reserved3" column="Reserved3" />
+    </resultMap>
+    <!-- 用于select查询公用抽取的列 -->
+    <sql id="columns">
+        ID,DeviceID,DeviceName,OLD1,NEW1,ChangeTime,Reserved1,Reserved2,Reserved3
+    </sql>
+    <!-- 新增记录 -->
+    <insert id="insert" parameterType="com.vrv.netmgr.entity.HardwareChange">
+        INSERT INTO HardwareChange (
+            ID ,
+            DeviceID ,
+            DeviceName ,
+            OLD1 ,
+            NEW1 ,
+            ChangeTime ,
+            Reserved1 ,
+            Reserved2 ,
+            Reserved3
+        ) VALUES (
+        #{id} ,
+        #{deviceId} ,
+        #{deviceName} ,
+        #{old1} ,
+        #{new1} ,
+        #{changeTime} ,
+        #{reserved1} ,
+        #{reserved2} ,
+        #{reserved3}
+        )
+    </insert>
+    <!-- 单记录删除 -->
+    <delete id="delete" parameterType="java.lang.String">
+        delete from HardwareChange where id=#{id}
+    </delete>
+    <!-- 批量记录删除 -->
+    <delete id="deleteByIds" parameterType="java.util.List">
+        delete from HardwareChange where id in
+        <foreach collection="list" item="ids" open="(" separator="," close=")">#{ids}</foreach>
+    </delete>
+    <!-- 单记录更新 -->
+    <update id="update" parameterType="com.vrv.netmgr.entity.HardwareChange">
+        UPDATE HardwareChange
+        <trim prefix="set" suffixOverrides=",">
+            <if test="#{deviceId} != null">
+                DeviceID =#{deviceId},
+            </if>
+            <if test="#{deviceName} != null">
+                DeviceName =#{deviceName},
+            </if>
+            <if test="#{old1} != null">
+                OLD1 =#{old1},
+            </if>
+            <if test="#{new1} != null">
+                NEW1 =#{new1},
+            </if>
+            <if test="#{changeTime} != null">
+                ChangeTime =#{changeTime},
+            </if>
+            <if test="#{reserved1} != null">
+                Reserved1 =#{reserved1},
+            </if>
+            <if test="#{reserved2} != null">
+                Reserved2 =#{reserved2},
+            </if>
+            <if test="#{reserved3} != null">
+                Reserved3 =#{reserved3},
+            </if>
+        </trim>
+        where id=#{id}
+    </update>
+    <!-- 查询记录BY ID -->
+    <select id="getById" resultMap="searchResultMap" parameterType="java.lang.String">
+        select
+        <include refid="columns" />
+        from
+        HardwareChange where id=#{id}
+    </select>
+    <!-- 查询所有记录 -->
+    <select id="getAll" resultMap="searchResultMap" parameterType="java.lang.String">
+        select
+        <include refid="columns" />
+        from
+        HardwareChange
+    </select>
+
+    <!-- 动态查询条件 -->
+    <sql id="searchConditionSQL">
+        <trim prefix="where" prefixOverrides="AND |OR ">
+            <if test="id != null">
+                and ID = #{id}
+            </if>
+            <if test="deviceId != null">
+                and DeviceID = #{deviceId}
+            </if>
+            <if test="deviceName != null">
+                and DeviceName = #{deviceName}
+            </if>
+            <if test="old1 != null">
+                and OLD1 = #{old1}
+            </if>
+            <if test="new1 != null">
+                and NEW1 = #{new1}
+            </if>
+            <!--
+            <if test="changeTime != null">
+                and ChangeTime = #{changeTime}
+            </if>
+            -->
+            <if test="reserved1 != null">
+                and Reserved1 = #{reserved1}
+            </if>
+            <if test="reserved2 != null">
+                and Reserved2 = #{reserved2}
+            </if>
+            <if test="reserved3 != null">
+                and Reserved3 = #{reserved3}
+            </if>
+        </trim>
+    </sql>
+    <select id="search" resultMap="searchResultMap" useCache="true" parameterType="com.vrv.netmgr.vo.HardwareChangeSearchCondition">
+        select
+        <include refid="columns" />
+        from HardwareChange
+        <include refid="searchConditionSQL" />
+    </select>
+
+    <select id="selectPage" resultMap="searchResultMap" useCache="true" parameterType="com.vrv.netmgr.vo.HardwareChangeSearchCondition" resultSetType="SCROLL_INSENSITIVE">
+        select
+            HardwareChange.ID 			AS id,
+            HardwareChange.DeviceID		AS deviceID,
+            HardwareChange.DeviceName	AS deviceName,
+            HardwareChange.OLD1			AS old1,
+            HardwareChange.NEW1			AS new1,
+            HardwareChange.ChangeTime	AS changeTime,
+            HardwareChange.Reserved1	AS reserved1,
+            HardwareChange.Reserved2	AS reserved2,
+            HardwareChange.Reserved3	AS reserved3,
+            
+            Device.DeptName				AS 'device.deptName',
+            Device.RouteIPAddress		AS 'device.routeIpaddress',
+            Device.OfficeName			AS 'device.officeName',
+            Device.Tel					AS 'device.tel',
+            Device.DeviceCode			AS 'device.deviceCode',
+            Device.UserName				AS 'device.userName',
+            Device.DeviceName			AS 'device.deviceName',
+            Device.ClassID				AS 'device.classID',
+            Class.ClassName				AS 'device.className',
+            Device.IPAddres 			AS 'device.ipaddres',
+            Device.NumIPAddress			AS 'device.numIPAddress',
+            Device.DeviceID				AS 'device.deviceID'
+
+        from HardwareChange INNER JOIN Device ON HardwareChange.DeviceID = Device.DeviceID INNER JOIN Class ON Device.ClassID = Class.ClassID
+        <include refid="searchConditionSQL" />
+    </select>
+    <select id="selectPageCount" resultType="long" parameterType="com.vrv.netmgr.vo.HardwareChangeSearchCondition" resultSetType="SCROLL_INSENSITIVE">
+        select count(id)
+        from HardwareChange INNER JOIN Device ON HardwareChange.DeviceID = Device.DeviceID INNER JOIN Class ON Device.ClassID = Class.ClassID
+        <include refid="searchConditionSQL" />
+    </select>
+</mapper>
