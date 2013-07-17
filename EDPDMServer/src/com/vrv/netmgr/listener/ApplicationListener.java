@@ -1,8 +1,5 @@
 package com.vrv.netmgr.listener;
 
-import java.io.File;
-import java.io.IOException;
-import java.io.StringWriter;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.HashMap;
@@ -35,7 +32,7 @@ public class ApplicationListener implements ServletContextListener {
     private static ServletContext context = null;
 
     /** 系统解密需要的密钥 **/
-    private Long encryptTableKey = null;
+    private Long encryptTableKey = 0L;
 
     /** 内存存放加密表以及该表的加密字段 **/
     public Map<String, String> encryptTableMetalMap = new HashMap<String, String>();
@@ -72,8 +69,7 @@ public class ApplicationListener implements ServletContextListener {
                 return null;
             }
         });
-
-        context.setAttribute("encryptTableMetalMap", encryptTableMetalMap);
+        context.setAttribute("encryptTableMetalMap", encryptTableMetalMap == null ? new HashMap<String, String>() : encryptTableMetalMap);
     }
 
     /**

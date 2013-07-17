@@ -74,18 +74,13 @@
         <property name="plugins">
             <list>
                 <ref local="auditInterceptor" />
-                <ref local="executeInterceptor" />
                 <ref local="offsetLimitInterceptor" />
-                <!-- <ref local="testInterceptor" /> -->
             </list>
         </property>
     </bean>
 
     <!-- 审计信息拦截器 -->
     <bean id="auditInterceptor" class="com.vrv.framework.dao.mybatis.plugin.AuditInterceptor"></bean>
-    <bean id="decryptionInterceptor" class="com.vrv.framework.dao.mybatis.plugin.DecryptionInterceptor"></bean>
-    <bean id="testInterceptor" class="com.vrv.framework.dao.mybatis.plugin.TestInterceptor"></bean>
-    <bean id="executeInterceptor" class="com.vrv.framework.dao.mybatis.plugin.ExecutorInterceptor"></bean>
 
     <!-- 分页拦截器 -->
     <bean id="offsetLimitInterceptor" class="com.vrv.framework.dao.mybatis.plugin.OffsetLimitInterceptor">
